@@ -64,7 +64,7 @@ const deck=document.getElementById("deck");if(!deck.children.length)deck.innerHT
 const slides=[...document.querySelectorAll(".slide")],count=document.getElementById("count"),progress=document.getElementById("progress"),key="pvep-deck-v4";let current=0,edit=false,selected=null,dragged=null,clicked=null;
 document.querySelectorAll("[data-component]").forEach((x,i)=>x.dataset.cid="c"+i);document.querySelectorAll("[data-edit]").forEach((x,i)=>x.dataset.eid="e"+i);
 const toast=t=>{let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(x._t);x._t=setTimeout(()=>x.classList.remove("show"),1800)};
-function show(n){if(edit)return;n=(n+slides.length)%slides.length;slides[current].classList.remove("active");current=n;slides[current].classList.add("active");count.textContent=String(current+1).padStart(2,"0")+" / "+slides.length;progress.style.width=(current+1)/slides.length*100+"%";history.replaceState(null,"","#slide-"+(current+1))}
+function show(n){if(edit)return;n=(n+slides.length)%slides.length;slides.forEach(s=>s.classList.remove("active"));current=n;slides[current].classList.add("active");count.textContent=String(current+1).padStart(2,"0")+" / "+slides.length;progress.style.width=(current+1)/slides.length*100+"%";history.replaceState(null,"","#slide-"+(current+1))}
 document.getElementById("prev").onclick=()=>show(current-1);document.getElementById("next").onclick=()=>show(current+1);document.getElementById("full").onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();addEventListener("keydown",e=>{if(e.target.isContentEditable)return;if(["ArrowRight","PageDown"," "].includes(e.key))show(current+1);if(["ArrowLeft","PageUp"].includes(e.key))show(current-1);if(e.key.toLowerCase()==="f")document.getElementById("full").click();if(e.key.toLowerCase()==="e")document.getElementById("editBtn").click()});let sx=0;deck.addEventListener("pointerdown",e=>sx=e.clientX);deck.addEventListener("pointerup",e=>{if(!edit&&Math.abs(e.clientX-sx)>70)show(current+(e.clientX<sx?1:-1))});
 const map=document.getElementById("map"),grid=document.getElementById("mapGrid");slides.forEach((s,i)=>{let b=document.createElement("button");b.className="action ghost";b.style.textAlign="left";b.textContent=String(i+1).padStart(2,"0")+" · "+s.dataset.title;b.onclick=()=>{map.close();show(i)};grid.appendChild(b)});document.getElementById("mapBtn").onclick=()=>map.showModal();document.getElementById("closeMap").onclick=()=>map.close();
 function save(){let o={texts:{},styles:{}};document.querySelectorAll("[data-edit]").forEach(x=>o.texts[x.dataset.eid]=x.innerHTML);document.querySelectorAll("[data-component]").forEach(x=>o.styles[x.dataset.cid]=x.getAttribute("style")||"");localStorage.setItem(key,JSON.stringify(o))}
@@ -78,5 +78,4 @@ let h=+(location.hash.match(/slide-(\d+)/)||[])[1];show(h?Math.min(h-1,slides.le
 </script>
 
 </body></html>
-
 
