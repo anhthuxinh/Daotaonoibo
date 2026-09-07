@@ -238,7 +238,7 @@
 
     .cover { padding: 0; grid-template-rows: 1fr; background: var(--navy); }
     .cover::after { display: none; }
-    .cover-photo { position: absolute; inset: 0 0 0 47%; background: linear-gradient(90deg,var(--navy) 0%, transparent 55%), url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Marco_Polo_at_Dusk.jpg/1280px-Marco_Polo_at_Dusk.jpg') center/cover no-repeat; opacity: .88; }
+    .cover-photo { position: absolute; inset: 0 0 0 47%; background: url('assets/offshore-platform.jpg') 58% center/cover no-repeat; opacity: .88; }
     .cover-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,28,53,.99) 0 45%, rgba(4,28,53,.4) 75%, rgba(4,28,53,.15)); }
     .cover-content { position: relative; z-index: 2; align-self: center; width: min(62%, 940px); padding-left: clamp(28px,7vw,112px); color: white; }
     .cover .lead { max-width: 680px; color: #cae6ef; }
@@ -315,6 +315,191 @@
       .cover-credit { bottom: 16px; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+
+    /* Editorial portfolio direction inspired by the supplied template */
+    .slide:not(.cover) {
+      color: #102238;
+      background-color: #f5f3ed;
+      background-image:
+        radial-gradient(circle at 12% 20%, rgba(0,119,185,.045) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 82% 74%, rgba(245,130,32,.04) 0 1px, transparent 1.5px);
+      background-size: 18px 18px, 23px 23px;
+    }
+    .slide:not(.cover)::before {
+      content: "";
+      position: absolute;
+      inset: 22px 24px 64px;
+      z-index: 0;
+      border: 1.5px solid rgba(4,28,53,.78);
+      border-radius: 5px;
+      pointer-events: none;
+    }
+    .slide:not(.cover) > * { position: relative; z-index: 1; }
+    .slide:not(.cover)::after {
+      top: 37px;
+      right: 48px;
+      color: var(--blue);
+      font-size: .68rem;
+      font-weight: 900;
+    }
+    .slide:not(.cover) header {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      align-items: end;
+      gap: 20px;
+      padding: 0 104px 13px 16px;
+      border-bottom: 1.5px solid rgba(4,28,53,.72);
+    }
+    .slide:not(.cover) header::after {
+      content: "✦";
+      position: absolute;
+      right: 13px;
+      bottom: -22px;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      color: white;
+      border-radius: 50% 50% 18% 50%;
+      background: var(--orange);
+      box-shadow: 5px 5px 0 rgba(0,119,185,.18);
+      transform: rotate(7deg);
+    }
+    .slide:not(.cover) header .eyebrow {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: end;
+      margin: 0 0 4px;
+      color: #e36119;
+      font-family: "Segoe Print", "Comic Sans MS", cursive;
+      font-size: clamp(.72rem,1vw,.9rem);
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: none;
+    }
+    .slide:not(.cover) header .eyebrow::before { width: 24px; height: 2px; background: var(--orange); }
+    .slide:not(.cover) header h2 {
+      grid-column: 1;
+      grid-row: 1;
+      max-width: 88%;
+      margin: 0;
+      color: var(--navy);
+      font-family: "Arial Black", "Aptos Display", "Segoe UI", sans-serif;
+      font-size: clamp(1.9rem,3.55vw,3.85rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+    }
+    .slide.dark:not(.cover), .slide.orange-wash:not(.cover) { color: #102238; background-color: #f5f3ed; }
+    .dark h2, .dark .lead { color: var(--navy); }
+    .dark .muted { color: var(--muted); }
+    .dark .tag { color: var(--blue); background: rgba(0,119,185,.1); }
+    .dark .card { color: var(--ink); border-color: rgba(4,28,53,.36); background: rgba(255,255,255,.74); box-shadow: none; }
+    .dark .card p { color: var(--ink); }
+    .dark .footerline { color: var(--muted); }
+
+    .card, .flow-item, .question-row, .timeline .step, .formula .token, .check-item, .poll button {
+      border: 1.5px solid rgba(4,28,53,.58);
+      border-radius: 16px;
+      box-shadow: none;
+      transition: transform .24s cubic-bezier(.2,.8,.2,1), box-shadow .24s ease, border-color .24s ease, background-color .24s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .card { background: rgba(255,255,255,.73); }
+    .card::before { top: 0; bottom: auto; width: 100%; height: 5px; border-radius: 16px 16px 0 0; }
+    .card:nth-child(even)::before { background: var(--orange); }
+    .card:nth-child(3n)::before { background: var(--blue); }
+    .numbered .num { color: var(--orange); font-family: "Arial Black", sans-serif; }
+    .flow-item { border-radius: 16px; }
+    .timeline .step { color: white; border-color: var(--navy); border-radius: 16px; box-shadow: 5px 5px 0 rgba(0,166,207,.2); }
+    .timeline .step.break { color: var(--navy); border-color: var(--orange); background: #ffd49e; box-shadow: 5px 5px 0 rgba(245,130,32,.22); }
+    .question-row { border-color: rgba(4,28,53,.25); background: rgba(255,255,255,.68); }
+    .formula .token { border: 1.5px solid var(--navy); box-shadow: 7px 7px 0 rgba(0,166,207,.2); }
+    .formula .token.orange { box-shadow: 7px 7px 0 rgba(245,130,32,.22); }
+    .action-box { border: 1.5px solid var(--navy); border-radius: 18px; box-shadow: 7px 7px 0 rgba(0,166,207,.2); }
+
+    @media (hover:hover) {
+      .card:hover, .flow-item:hover, .question-row:hover, .timeline .step:hover, .formula .token:hover {
+        z-index: 5;
+        border-color: var(--blue);
+        box-shadow: 9px 9px 0 rgba(0,166,207,.24);
+        transform: perspective(700px) translateY(-7px) rotateX(1.5deg) rotateY(-1.5deg);
+      }
+      .card:nth-child(even):hover, .timeline .step:nth-child(even):hover { box-shadow: 9px 9px 0 rgba(245,130,32,.22); }
+      .control-btn:hover { transform: translateY(-2px) scale(1.06); }
+      .check-item:hover, .poll button:hover { box-shadow: 7px 7px 0 rgba(0,166,207,.2); }
+    }
+
+    .current .card, .current .flow-item, .current .timeline .step, .current .question-row, .current .formula .token {
+      animation: editorialIn .48s cubic-bezier(.18,.78,.2,1) both;
+    }
+    .current .card:nth-child(2), .current .flow-item:nth-child(2), .current .timeline .step:nth-child(2), .current .question-row:nth-child(2) { animation-delay: .05s; }
+    .current .card:nth-child(3), .current .flow-item:nth-child(3), .current .timeline .step:nth-child(3), .current .question-row:nth-child(3) { animation-delay: .1s; }
+    .current .card:nth-child(4), .current .flow-item:nth-child(4), .current .timeline .step:nth-child(4), .current .question-row:nth-child(4) { animation-delay: .15s; }
+    .current .card:nth-child(n+5), .current .flow-item:nth-child(n+5), .current .timeline .step:nth-child(n+5), .current .question-row:nth-child(n+5) { animation-delay: .2s; }
+    @keyframes editorialIn { from { opacity: 0; transform: translateY(18px) rotate(.5deg); } to { opacity: 1; transform: none; } }
+
+    .cover {
+      color: var(--navy);
+      background-color: #f5f3ed;
+      background-image:
+        radial-gradient(circle at 18% 25%, rgba(0,119,185,.05) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 75% 78%, rgba(245,130,32,.05) 0 1px, transparent 1.4px);
+      background-size: 17px 17px, 21px 21px;
+    }
+    .cover::before { content: ""; position: absolute; inset: 34px; border: 1.5px solid var(--navy); border-radius: 5px; }
+    .cover-photo {
+      inset: 15% 6% 13% auto;
+      width: 33%;
+      border: 2px solid var(--navy);
+      border-radius: 180px 180px 20px 20px;
+      background-position: 58% center;
+      opacity: 1;
+      filter: saturate(.86) contrast(1.05);
+      box-shadow: 13px 13px 0 var(--orange);
+    }
+    .cover-overlay { display: none; }
+    .cover-content { width: 66%; padding-left: clamp(54px,8vw,128px); color: var(--navy); }
+    .cover-content::before {
+      content: "";
+      position: absolute;
+      left: clamp(26px,4vw,62px);
+      top: 48%;
+      width: min(760px,92%);
+      height: 44%;
+      border: 2px solid var(--navy);
+      border-radius: 50%;
+      transform: translateY(-50%) rotate(-4deg);
+      pointer-events: none;
+    }
+    .cover h1 { position: relative; z-index: 1; color: var(--navy); font-family: "Arial Black", "Aptos Display", sans-serif; text-transform: uppercase; }
+    .cover h1::before { content: ""; position: absolute; left: -20px; right: 8%; bottom: 6%; z-index: -1; height: 33%; border-radius: 999px; background: var(--cyan); transform: rotate(-2deg); opacity: .9; }
+    .cover .eyebrow { color: var(--orange); font-family: "Segoe Print", "Comic Sans MS", cursive; letter-spacing: .03em; text-transform: none; }
+    .cover .lead { position: relative; z-index: 1; max-width: 68%; color: #3f566d; }
+    .cover .tag { position: relative; z-index: 1; color: var(--navy); border: 1px solid var(--navy); background: rgba(255,255,255,.76); }
+    .cover-credit { color: rgba(4,28,53,.62); }
+
+    /* Slide 5: contained overlapping circles, never intruding into the title */
+    .scope-visual { position: relative; width: min(430px,100%); height: min(41vh,400px); min-height: 300px; margin: 0 auto; }
+    .scope-circle.wide { position: absolute; left: 0; top: 0; width: min(340px,80%); padding: 11%; border: 1.5px solid var(--navy); box-shadow: 9px 9px 0 rgba(0,166,207,.22); }
+    .scope-circle.focus { position: absolute; right: 0; bottom: 0; width: min(225px,54%); margin: 0; padding: 8%; border: 1.5px solid var(--navy); box-shadow: 8px 8px 0 rgba(245,130,32,.22); }
+
+    .deck.editing .slide.current [data-live-edit="true"] { outline: 2px dashed var(--orange); outline-offset: 4px; border-radius: 4px; cursor: text; }
+    .deck.editing .slide.current [data-live-edit="true"]:focus { outline-style: solid; background: rgba(255,255,255,.8); box-shadow: 0 0 0 7px rgba(245,130,32,.1); }
+    .edit-toast { position: fixed; top: 18px; left: 50%; z-index: 30; display: none; padding: 11px 16px; color: white; border-radius: 999px; background: var(--navy); box-shadow: var(--shadow); transform: translateX(-50%); font-size: .86rem; font-weight: 750; }
+    .edit-toast.show { display: block; animation: editorialIn .25s ease both; }
+
+    @media (max-width:900px) {
+      .slide:not(.cover)::before { inset: 16px 14px 64px; }
+      .slide:not(.cover) header { padding-right: 60px; }
+      .slide:not(.cover)::after { right: 28px; }
+      .cover-photo { inset: auto 8% 13% auto; width: 42%; height: 34%; border-radius: 90px 90px 14px 14px; }
+      .cover-content { width: 100%; padding: 80px 34px 44%; }
+      .cover-content::before { display: none; }
+      .cover .lead { max-width: 92%; }
+    }
   </style>
 </head>
 <body>
@@ -587,16 +772,19 @@
 
   </main>
 
-  <div class="help"><kbd>←</kbd> <kbd>→</kbd> điều hướng · <kbd>M</kbd> mục lục · <kbd>N</kbd> ghi chú · <kbd>F</kbd> toàn màn hình</div>
+  <div class="help"><kbd>←</kbd> <kbd>→</kbd> chuyển trang · <kbd>E</kbd> sửa chữ · <kbd>M</kbd> mục lục · <kbd>F</kbd> toàn màn hình</div>
   <nav class="controls" aria-label="Điều khiển trình chiếu">
     <button class="control-btn optional" id="mapBtn" type="button" aria-label="Mở mục lục" title="Mục lục (M)">☷</button>
     <button class="control-btn" id="prevBtn" type="button" aria-label="Trang trước" title="Trang trước">←</button>
     <span class="counter" id="counter">01 / 20</span>
     <button class="control-btn" id="nextBtn" type="button" aria-label="Trang sau" title="Trang sau">→</button>
+    <button class="control-btn optional" id="editBtn" type="button" aria-label="Sửa nội dung" title="Sửa chữ trên slide (E)">✎</button>
+    <button class="control-btn optional" id="downloadBtn" type="button" aria-label="Tải file HTML" title="Tải bản HTML đã sửa">⇩</button>
     <button class="control-btn optional" id="notesBtn" type="button" aria-label="Ghi chú giảng viên" title="Ghi chú (N)">▤</button>
     <button class="control-btn optional" id="fullBtn" type="button" aria-label="Toàn màn hình" title="Toàn màn hình (F)">⛶</button>
   </nav>
   <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="edit-toast" id="editToast">Đang sửa chữ · bấm ✎ lần nữa để hoàn tất · bấm ⇩ để tải file</div>
   <aside class="notes-panel" id="notesPanel" aria-live="polite"><strong>Ghi chú giảng viên</strong><div id="notesContent"></div></aside>
   <div class="timer" id="timer"><span>Hoạt động</span><span class="timer-value" id="timerValue">00:00</span><button id="timerClose" type="button" aria-label="Đóng đồng hồ">×</button></div>
 
@@ -617,6 +805,24 @@
       let index = Math.max(0, Math.min(slides.length - 1, Number(location.hash.replace('#/', '')) - 1 || 0));
       let touchStartX = 0;
       let timerHandle = null;
+      let editMode = false;
+      const editStoreKey = 'pvep-slide-edits-v2';
+      let savedEdits = {};
+
+      try { savedEdits = JSON.parse(localStorage.getItem(editStoreKey) || '{}'); } catch (_) { savedEdits = {}; }
+
+      function editableNodes(slide, slideIndex) {
+        const nodes = [...slide.querySelectorAll('h1, h2, h3, p, li, .eyebrow, .quote')]
+          .filter(node => !node.closest('.speaker-notes') && !node.closest('button') && !node.classList.contains('cover-credit'));
+        nodes.forEach((node, nodeIndex) => {
+          const key = `${slideIndex}-${nodeIndex}`;
+          node.dataset.liveEdit = 'true';
+          node.dataset.editKey = key;
+          if (Object.prototype.hasOwnProperty.call(savedEdits, key)) node.innerHTML = savedEdits[key];
+        });
+        return nodes;
+      }
+      slides.forEach((slide, slideIndex) => editableNodes(slide, slideIndex));
 
       const pad = n => String(n).padStart(2, '0');
       function renderNotes() {
@@ -624,6 +830,7 @@
         notesContent.innerHTML = notes ? notes.innerHTML : '<p>Không có ghi chú cho trang này.</p>';
       }
       function goTo(next, updateHash = true) {
+        slides.forEach(slide => slide.querySelectorAll('[contenteditable="true"]').forEach(node => node.contentEditable = 'false'));
         next = Math.max(0, Math.min(slides.length - 1, next));
         slides.forEach((slide, i) => {
           slide.classList.toggle('current', i === next);
@@ -635,10 +842,37 @@
         progress.style.width = `${((index + 1) / slides.length) * 100}%`;
         document.title = `${slides[index].dataset.title} · PVEP`;
         renderNotes();
+        if (editMode) slides[index].querySelectorAll('[data-live-edit="true"]').forEach(node => node.contentEditable = 'true');
         if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
       }
       function toggleNotes() { notesPanel.classList.toggle('open'); renderNotes(); }
       function toggleMap() { mapDialog.open ? mapDialog.close() : mapDialog.showModal(); }
+      function toggleEdit() {
+        editMode = !editMode;
+        document.getElementById('deck').classList.toggle('editing', editMode);
+        document.getElementById('editToast').classList.toggle('show', editMode);
+        document.getElementById('editBtn').textContent = editMode ? '✓' : '✎';
+        slides.forEach(slide => slide.querySelectorAll('[data-live-edit="true"]').forEach(node => node.contentEditable = 'false'));
+        if (editMode) slides[index].querySelectorAll('[data-live-edit="true"]').forEach(node => node.contentEditable = 'true');
+      }
+      function downloadHtml() {
+        if (editMode) toggleEdit();
+        const clone = document.documentElement.cloneNode(true);
+        clone.querySelectorAll('[contenteditable]').forEach(node => node.removeAttribute('contenteditable'));
+        clone.querySelectorAll('.slide').forEach((slide, i) => {
+          slide.classList.toggle('current', i === 0);
+          slide.classList.remove('exit-left');
+          slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+        });
+        clone.querySelector('#notesPanel')?.classList.remove('open');
+        clone.querySelector('#editToast')?.classList.remove('show');
+        const blob = new Blob(['<!doctype html>\n' + clone.outerHTML], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'index.html';
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }
       async function toggleFullscreen() {
         try { document.fullscreenElement ? await document.exitFullscreen() : await document.documentElement.requestFullscreen(); } catch (_) {}
       }
@@ -655,6 +889,8 @@
       document.getElementById('prevBtn').addEventListener('click', () => goTo(index - 1));
       document.getElementById('nextBtn').addEventListener('click', () => goTo(index + 1));
       document.getElementById('mapBtn').addEventListener('click', toggleMap);
+      document.getElementById('editBtn').addEventListener('click', toggleEdit);
+      document.getElementById('downloadBtn').addEventListener('click', downloadHtml);
       document.getElementById('notesBtn').addEventListener('click', toggleNotes);
       document.getElementById('fullBtn').addEventListener('click', toggleFullscreen);
       mapDialog.querySelector('.map-close').addEventListener('click', () => mapDialog.close());
@@ -666,6 +902,7 @@
         if (event.key === 'Home') goTo(0);
         if (event.key === 'End') goTo(slides.length - 1);
         if (event.key.toLowerCase() === 'm') toggleMap();
+        if (event.key.toLowerCase() === 'e') toggleEdit();
         if (event.key.toLowerCase() === 'n') toggleNotes();
         if (event.key.toLowerCase() === 'f') toggleFullscreen();
       });
@@ -675,6 +912,26 @@
         const dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 70) goTo(index + (dx < 0 ? 1 : -1));
       }, { passive: true });
+
+      document.getElementById('deck').addEventListener('input', event => {
+        const target = event.target.closest('[data-edit-key]');
+        if (!target || !editMode) return;
+        savedEdits[target.dataset.editKey] = target.innerHTML;
+        localStorage.setItem(editStoreKey, JSON.stringify(savedEdits));
+      });
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.card, .flow-item, .timeline .step, .formula .token').forEach(item => {
+          item.addEventListener('pointermove', event => {
+            if (event.pointerType === 'touch') return;
+            const box = item.getBoundingClientRect();
+            const rx = ((event.clientY - box.top) / box.height - .5) * -4;
+            const ry = ((event.clientX - box.left) / box.width - .5) * 5;
+            item.style.transform = `perspective(700px) translateY(-7px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+          });
+          item.addEventListener('pointerleave', () => { item.style.transform = ''; });
+        });
+      }
 
       const topicInputs = [...document.querySelectorAll('#topicInputs input')];
       topicInputs.forEach(input => input.addEventListener('input', () => {
