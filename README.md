@@ -10,6 +10,16 @@ Bộ slide HTML gồm 20 trang, được xây dựng từ giáo án **“Thiết
 4. Trên điện thoại hoặc máy tính bảng, vuốt trái/phải để chuyển slide.
 5. Muốn xuất PDF: mở trang, nhấn `Ctrl + P`, chọn **Save as PDF**, khổ ngang và bật **Background graphics**.
 
+## Chỉnh nội dung mà không cần biết code
+
+1. Mở bộ slide và đi đến trang cần sửa.
+2. Nhấn nút **✎** ở thanh điều khiển phía dưới hoặc nhấn phím `E`.
+3. Bấm trực tiếp vào tiêu đề hoặc đoạn chữ rồi sửa như trong Word.
+4. Nhấn **✓** khi sửa xong. Nội dung được lưu trên chính trình duyệt đang dùng.
+5. Nhấn nút **⇩** để tải bản đã sửa. File tải về luôn có tên `index.html`.
+
+Để cập nhật bản trên GitHub: mở repository, chọn **Add file → Upload files**, kéo file `index.html` mới vào, sau đó chọn **Commit changes**. Bạn cũng có thể gửi lại file `index.html` cho Codex để được cập nhật hộ.
+
 ## Tương tác có sẵn
 
 - Phiếu chọn chủ đề với câu hoàn chỉnh tự động.
@@ -18,6 +28,7 @@ Bộ slide HTML gồm 20 trang, được xây dựng từ giáo án **“Thiết
 - Đồng hồ đếm ngược cho hoạt động nhóm.
 - Tình huống bình chọn và phản hồi tức thì.
 - Mục lục, ghi chú giảng viên, toàn màn hình và điều hướng bàn phím/chạm.
+- Hiệu ứng nổi, nghiêng nhẹ và đổ bóng khi rê chuột lên thẻ nội dung.
 
 ## Nguồn thiết kế và hình ảnh
 
