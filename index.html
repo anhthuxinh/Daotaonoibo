@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="BÃ i giáº£ng Ä‘Ã o táº¡o giáº£ng viÃªn ná»™i bá»™ PVEP: thiáº¿t káº¿ vÃ  thá»±c hiá»‡n buá»•i há»c hiá»‡u quáº£ vá»›i sá»± há»— trá»£ cá»§a AI." />
+  <meta name="theme-color" content="#062c52" />
+  <title>ÄÃ o táº¡o Giáº£ng viÃªn Ná»™i bá»™ PVEP</title>
+  <style>
+    :root {
+      --navy: #041c35;
+      --navy-2: #062c52;
+      --blue: #0077b9;
+      --cyan: #00a6cf;
+      --sky: #9fe9f7;
+      --orange: #f58220;
+      --amber: #ffb547;
+      --ink: #10253b;
+      --muted: #60758a;
+      --paper: #f7fbfd;
+      --white: #ffffff;
+      --success: #1bbf89;
+      --danger: #ff5b62;
+      --shadow: 0 24px 70px rgba(0, 31, 61, .18);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body {
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: #021426;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, textarea { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+
+    .deck { position: relative; width: 100%; height: 100%; isolation: isolate; }
+    .deck::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(0, 166, 207, .24), transparent 28%),
+        radial-gradient(circle at 8% 88%, rgba(245, 130, 32, .18), transparent 24%),
+        linear-gradient(135deg, #021426, #07345d);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(18px, 2.4vh, 30px);
+      width: 100%;
+      height: 100%;
+      padding: clamp(28px, 5vw, 76px) clamp(26px, 7vw, 112px) clamp(76px, 10vh, 108px);
+      background: var(--paper);
+      opacity: 0;
+      transform: translateX(50px) scale(.985);
+      pointer-events: none;
+      transition: opacity .32s ease, transform .42s cubic-bezier(.2,.75,.2,1);
+      overflow: hidden;
+    }
+    .slide.current { opacity: 1; transform: none; pointer-events: auto; }
+    .slide.exit-left { transform: translateX(-50px) scale(.985); }
+    .slide.dark {
+      color: var(--white);
+      background:
+        radial-gradient(circle at 86% 16%, rgba(0, 166, 207, .23), transparent 25%),
+        linear-gradient(135deg, var(--navy), var(--navy-2));
+    }
+    .slide.orange-wash {
+      background:
+        radial-gradient(circle at 95% 5%, rgba(245,130,32,.18), transparent 25%),
+        linear-gradient(135deg, #fff, #f5fbfd 60%, #eef9fc);
+    }
+
+    .slide::after {
+      content: attr(data-section);
+      position: absolute;
+      right: clamp(26px, 7vw, 112px);
+      top: clamp(26px, 4vw, 58px);
+      color: var(--blue);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .slide.dark::after { color: var(--sky); }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue);
+      font-size: clamp(.76rem, 1.1vw, .92rem);
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .dark .eyebrow { color: var(--sky); }
+    .eyebrow::before { content: ""; width: 36px; height: 4px; border-radius: 9px; background: var(--orange); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 980px;
+      margin-bottom: 20px;
+      font-size: clamp(2.7rem, 6.1vw, 6.4rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+    h2 {
+      max-width: 1050px;
+      margin-bottom: 10px;
+      color: var(--navy-2);
+      font-size: clamp(2rem, 4.2vw, 4.5rem);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+    .dark h2 { color: white; }
+    h3 { margin-bottom: 8px; font-size: clamp(1.05rem, 1.6vw, 1.45rem); line-height: 1.2; }
+    p, li { font-size: clamp(1rem, 1.5vw, 1.32rem); line-height: 1.48; }
+    .lead { max-width: 940px; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.72rem); line-height: 1.45; }
+    .dark .lead { color: #c9e3ef; }
+    .accent { color: var(--orange); }
+    .blue { color: var(--blue); }
+    .muted { color: var(--muted); }
+    .dark .muted { color: #adc8d8; }
+    .small { font-size: clamp(.78rem, 1vw, .96rem); line-height: 1.45; }
+    .big-number { color: var(--orange); font-size: clamp(3rem, 7vw, 7rem); font-weight: 900; line-height: .9; letter-spacing: -.06em; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px;
+      border-radius: 999px; background: rgba(0,119,185,.1); color: var(--blue);
+      font-size: .82rem; font-weight: 800; letter-spacing: .04em;
+    }
+    .dark .tag { background: rgba(159,233,247,.12); color: var(--sky); }
+
+    .content { align-self: center; min-height: 0; width: 100%; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(16px, 2vw, 28px); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(14px, 1.8vw, 24px); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(12px, 1.5vw, 20px); }
+    .grid-6 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(10px, 1.2vw, 16px); }
+    .card {
+      position: relative;
+      padding: clamp(18px, 2vw, 28px);
+      border: 1px solid rgba(0,119,185,.14);
+      border-radius: 22px;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 10px 32px rgba(2,44,82,.07);
+      overflow: hidden;
+    }
+    .card::before { content: ""; position: absolute; left: 0; top: 20px; bottom: 20px; width: 4px; border-radius: 8px; background: var(--cyan); }
+    .card.orange::before { background: var(--orange); }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+    .dark .card { color: white; border-color: rgba(159,233,247,.17); background: rgba(255,255,255,.075); box-shadow: none; }
+    .dark .card p { color: #d8e8f1; }
+    .numbered { padding-left: clamp(50px, 5vw, 78px); }
+    .numbered .num { position: absolute; left: 20px; top: 18px; color: var(--orange); font-size: clamp(1.5rem, 2.5vw, 2.4rem); font-weight: 900; }
+
+    .quote {
+      position: relative; max-width: 1120px; margin: 0 auto; padding: clamp(26px,4vw,54px);
+      border-left: 8px solid var(--orange); border-radius: 0 28px 28px 0;
+      background: white; box-shadow: var(--shadow);
+      font-size: clamp(1.35rem, 2.6vw, 2.55rem); font-weight: 730; line-height: 1.35;
+    }
+    .formula { display: flex; align-items: center; justify-content: center; gap: clamp(10px, 2vw, 24px); flex-wrap: wrap; }
+    .formula .token {
+      display: grid; place-items: center; min-width: 185px; min-height: 128px; padding: 22px;
+      color: white; border-radius: 24px; background: linear-gradient(145deg, var(--navy-2), var(--blue));
+      box-shadow: 0 18px 40px rgba(0,83,139,.2); text-align: center;
+    }
+    .formula .token.orange { background: linear-gradient(145deg, #d95b0a, var(--orange)); }
+    .formula .operator { color: var(--cyan); font-size: 2.2rem; font-weight: 900; }
+
+    .timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; align-items: stretch; }
+    .timeline .step { position: relative; min-height: 160px; padding: 20px 14px; border-radius: 18px; color: white; background: var(--navy-2); }
+    .timeline .step:nth-child(2n) { background: var(--blue); }
+    .timeline .step.break { color: var(--navy); background: var(--amber); }
+    .timeline strong { display: block; margin-bottom: 12px; color: var(--sky); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+    .timeline .break strong { color: #8d3d00; }
+    .timeline b { display: block; margin-top: 12px; font-size: 1.4rem; }
+
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; align-items: center; }
+    .flow-item { position: relative; display: grid; align-content: center; min-height: 205px; padding: 22px; border-radius: 22px; background: white; border: 1px solid #d9ebf3; box-shadow: 0 12px 34px rgba(4,44,82,.08); }
+    .flow-item:not(:last-child)::after { content: "â€º"; position: absolute; right: -19px; top: 50%; z-index: 2; transform: translateY(-50%); color: var(--orange); font-size: 3rem; font-weight: 900; }
+    .flow-item .stepno { color: var(--cyan); font-weight: 900; letter-spacing: .1em; }
+    .flow-item p { margin: 0; font-size: clamp(.86rem, 1.1vw, 1.05rem); }
+
+    .split-visual { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(24px,5vw,72px); align-items: center; }
+    .scope-circle { aspect-ratio: 1; display: grid; place-items: center; padding: 15%; border-radius: 50%; text-align: center; font-weight: 800; }
+    .scope-circle.wide { color: #b3d9e8; background: var(--navy-2); }
+    .scope-circle.focus { width: 62%; margin: -18% 0 0 36%; color: white; background: linear-gradient(145deg,var(--orange),#ef5f26); box-shadow: 0 18px 35px rgba(245,130,32,.25); }
+
+    .question-list { display: grid; gap: 10px; }
+    .question-row { display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; padding: 10px 14px; border-radius: 14px; background: rgba(0,119,185,.06); }
+    .question-row b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: white; background: var(--blue); }
+    .question-row p { margin: 3px 0 0; font-size: clamp(.9rem,1.15vw,1.08rem); }
+
+    .action-box { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: clamp(22px,3vw,38px); border-radius: 26px; background: var(--navy-2); color: white; }
+    .action-box p { margin-bottom: 0; color: #d8eaf2; }
+    .time-chip { min-width: 110px; padding: 18px; border: 2px solid var(--orange); border-radius: 18px; text-align: center; }
+    .time-chip strong { display: block; color: var(--amber); font-size: 2.1rem; }
+
+    .activity-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .activity-inputs input, .builder textarea {
+      width: 100%; color: var(--ink); border: 1px solid #b7d8e6; border-radius: 14px; background: white; outline: none;
+    }
+    .activity-inputs input { padding: 13px 15px; }
+    .activity-inputs input:focus, .builder textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 4px rgba(0,166,207,.13); }
+    .sentence-output { margin-top: 14px; padding: 15px 18px; border-radius: 14px; color: var(--navy); background: #e4f6fb; font-weight: 650; }
+
+    .check-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .check-item {
+      min-height: 110px; padding: 17px; border: 1px solid #c7dfe9; border-radius: 18px; color: var(--ink); background: white; text-align: left; cursor: pointer; transition: .2s ease;
+    }
+    .check-item::before { content: "â—‹"; display: block; margin-bottom: 8px; color: var(--blue); font-size: 1.5rem; line-height: 1; }
+    .check-item.done { color: white; border-color: var(--success); background: var(--navy-2); transform: translateY(-2px); }
+    .check-item.done::before { content: "âœ“"; color: #60e7bb; }
+    .check-status { margin-top: 16px; color: var(--blue); font-weight: 800; }
+
+    .builder { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .builder label { display: block; color: var(--blue); font-size: .88rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+    .builder textarea { min-height: 130px; margin-top: 8px; padding: 14px; resize: none; }
+
+    .poll { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .poll button { min-height: 120px; padding: 18px; border: 1px solid #bcd7e4; border-radius: 20px; color: var(--ink); background: white; cursor: pointer; text-align: left; transition: .22s ease; }
+    .poll button:hover, .poll button:focus-visible { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 12px 30px rgba(0,119,185,.13); }
+    .poll button.selected { color: white; border-color: var(--blue); background: var(--navy-2); }
+    .poll-result { min-height: 52px; margin-top: 16px; padding: 14px 18px; border-radius: 14px; background: #e9f7fa; opacity: 0; transform: translateY(8px); transition: .2s ease; }
+    .poll-result.show { opacity: 1; transform: none; }
+
+    .footerline { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .78rem; }
+    .dark .footerline { color: #9db8c8; }
+    .brand { display: flex; align-items: center; gap: 9px; font-weight: 900; letter-spacing: .08em; }
+    .brand-flame { width: 13px; height: 20px; border-radius: 70% 30% 65% 35%; background: linear-gradient(160deg,var(--amber),var(--orange)); transform: rotate(8deg); }
+    .speaker-notes { display: none; }
+
+    .cover { padding: 0; grid-template-rows: 1fr; background: var(--navy); }
+    .cover::after { display: none; }
+    .cover-photo { position: absolute; inset: 0 0 0 47%; background: linear-gradient(90deg,var(--navy) 0%, transparent 55%), url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Marco_Polo_at_Dusk.jpg/1280px-Marco_Polo_at_Dusk.jpg') center/cover no-repeat; opacity: .88; }
+    .cover-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,28,53,.99) 0 45%, rgba(4,28,53,.4) 75%, rgba(4,28,53,.15)); }
+    .cover-content { position: relative; z-index: 2; align-self: center; width: min(62%, 940px); padding-left: clamp(28px,7vw,112px); color: white; }
+    .cover .lead { max-width: 680px; color: #cae6ef; }
+    .cover-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+    .cover-credit { position: absolute; right: 18px; bottom: 66px; z-index: 2; color: rgba(255,255,255,.66); font-size: .68rem; }
+    .cover-credit a { color: inherit; }
+
+    .controls {
+      position: fixed; left: 50%; bottom: 18px; z-index: 20; display: flex; align-items: center; gap: 7px;
+      max-width: calc(100vw - 28px); padding: 7px; border: 1px solid rgba(255,255,255,.18); border-radius: 18px;
+      background: rgba(3,25,47,.87); box-shadow: 0 12px 34px rgba(0,0,0,.24); backdrop-filter: blur(16px); transform: translateX(-50%);
+    }
+    .control-btn { display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 12px; color: white; background: transparent; cursor: pointer; }
+    .control-btn:hover, .control-btn:focus-visible { background: rgba(255,255,255,.13); outline: none; }
+    .counter { min-width: 72px; color: white; font-size: .86rem; font-variant-numeric: tabular-nums; text-align: center; }
+    .progress-track { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; height: 5px; background: rgba(255,255,255,.14); }
+    .progress-bar { height: 100%; width: 5%; background: linear-gradient(90deg,var(--cyan),var(--orange)); transition: width .35s ease; }
+
+    .timer {
+      position: fixed; right: 18px; bottom: 18px; z-index: 24; display: none; align-items: center; gap: 12px;
+      padding: 10px 14px; color: white; border-radius: 16px; background: rgba(3,25,47,.94); box-shadow: var(--shadow);
+    }
+    .timer.active { display: flex; }
+    .timer-value { min-width: 58px; color: var(--amber); font-size: 1.2rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .timer button { width: 30px; height: 30px; border: 0; border-radius: 9px; color: white; background: rgba(255,255,255,.12); cursor: pointer; }
+
+    .notes-panel { position: fixed; left: 18px; right: 18px; bottom: 78px; z-index: 19; display: none; max-height: 32vh; padding: 18px 22px; color: white; border: 1px solid rgba(255,255,255,.16); border-radius: 20px; background: rgba(3,25,47,.95); box-shadow: var(--shadow); overflow: auto; }
+    .notes-panel.open { display: block; }
+    .notes-panel strong { display: block; margin-bottom: 8px; color: var(--amber); }
+    .notes-panel p { margin: 0; font-size: 1rem; }
+
+    dialog { width: min(1020px, calc(100vw - 40px)); max-height: 82vh; padding: 0; border: 0; border-radius: 26px; color: var(--ink); background: #f7fbfd; box-shadow: 0 40px 120px rgba(0,0,0,.4); }
+    dialog::backdrop { background: rgba(0,16,33,.72); backdrop-filter: blur(8px); }
+    .map-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; background: var(--navy-2); color: white; }
+    .map-head h3 { margin: 0; }
+    .map-close { width: 38px; height: 38px; border: 0; border-radius: 11px; color: white; background: rgba(255,255,255,.12); cursor: pointer; }
+    .map-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; padding: 22px; }
+    .map-card { min-height: 112px; padding: 14px; border: 1px solid #cee1ea; border-radius: 16px; color: var(--ink); background: white; cursor: pointer; text-align: left; }
+    .map-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+    .map-card b { display: block; margin-bottom: 7px; color: var(--orange); }
+    .map-card span { font-size: .92rem; font-weight: 700; }
+
+    .help { position: fixed; top: 16px; left: 16px; z-index: 18; padding: 8px 12px; border-radius: 999px; color: white; background: rgba(3,25,47,.54); font-size: .75rem; opacity: .76; }
+    .help kbd { padding: 2px 6px; border: 1px solid rgba(255,255,255,.32); border-radius: 5px; font-family: inherit; }
+
+    @media (max-width: 900px) {
+      .slide { padding: 68px 24px 84px; overflow-y: auto; }
+      .slide::after { right: 24px; top: 28px; }
+      .grid-4, .grid-3, .grid-6, .check-grid, .builder, .poll { grid-template-columns: repeat(2,1fr); }
+      .flow { grid-template-columns: 1fr; gap: 8px; }
+      .flow-item { min-height: auto; }
+      .flow-item:not(:last-child)::after { display: none; }
+      .timeline { grid-template-columns: repeat(3,1fr); }
+      .split-visual { grid-template-columns: 1fr; }
+      .scope-visual { display: none; }
+      .cover-photo { inset: 0; opacity: .45; }
+      .cover-overlay { background: linear-gradient(90deg, rgba(4,28,53,.98), rgba(4,28,53,.64)); }
+      .cover-content { width: 100%; padding: 0 28px; }
+      .map-grid { grid-template-columns: repeat(2,1fr); }
+      .help { display: none; }
+    }
+    @media (max-width: 560px) {
+      .grid-2, .grid-3, .grid-4, .grid-6, .check-grid, .builder, .poll, .activity-inputs { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: repeat(2,1fr); }
+      .map-grid { grid-template-columns: 1fr; }
+      .controls .optional { display: none; }
+      .timer { top: 14px; right: 14px; bottom: auto; }
+    }
+    @media print {
+      html, body { overflow: visible; background: white; }
+      .deck { height: auto; }
+      .slide { position: relative; display: grid; width: 13.333in; height: 7.5in; padding: .55in .75in .7in; break-after: page; opacity: 1; transform: none; pointer-events: auto; overflow: hidden; }
+      .controls, .progress-track, .help, .timer, .notes-panel { display: none !important; }
+      .cover-credit { bottom: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck" aria-live="polite">
+
+    <section class="slide cover current" data-title="Má»Ÿ Ä‘áº§u" data-section="PVEP Learning Lab" aria-hidden="false">
+      <div class="cover-photo" aria-hidden="true"></div><div class="cover-overlay" aria-hidden="true"></div>
+      <div class="cover-content">
+        <div class="eyebrow">ÄÃ o táº¡o giáº£ng viÃªn ná»™i bá»™ PVEP</div>
+        <h1>Thiáº¿t káº¿ buá»•i há»c <span class="accent">cÃ³ tÃ¡c Ä‘á»™ng</span></h1>
+        <p class="lead">Biáº¿n kinh nghiá»‡m thÃ nh má»™t hÃ nh trÃ¬nh há»c rÃµ rÃ ng, cÃ³ tÆ°Æ¡ng tÃ¡c vÃ  cÃ³ thá»ƒ Ã¡p dá»¥ng â€” vá»›i sá»± há»— trá»£ cÃ³ trÃ¡ch nhiá»‡m cá»§a AI.</p>
+        <div class="cover-meta"><span class="tag">03 giá»</span><span class="tag">20â€“30 há»c viÃªn</span><span class="tag">Thá»±c hÃ nh trá»ng tÃ¢m</span></div>
+      </div>
+      <div class="cover-credit">áº¢nh: <a href="https://commons.wikimedia.org/wiki/File:Marco_Polo_at_Dusk.jpg" target="_blank" rel="noreferrer">GuavaTrain / Wikimedia Commons â€” CC0</a></div>
+      <aside class="speaker-notes"><p>Má»Ÿ báº±ng cÃ¢u há»i: â€œMá»™t buá»•i há»c ná»™i bá»™ Ä‘Ã¡ng nhá»› nháº¥t cá»§a anh/chá»‹ Ä‘Ã£ giÃºp anh/chá»‹ lÃ m Ä‘Æ°á»£c Ä‘iá»u gÃ¬ khÃ¡c Ä‘i?â€ Má»i 2â€“3 cÃ¢u tráº£ lá»i ngáº¯n.</p></aside>
+    </section>
+
+    <section class="slide dark" data-title="HÃ nh trÃ¬nh 3 giá»" data-section="Khá»Ÿi Ä‘á»™ng" aria-hidden="true">
+      <header><div class="eyebrow">HÃ nh trÃ¬nh 3 giá»</div><h2>Tá»« kinh nghiá»‡m â†’ hÃ nh Ä‘á»™ng</h2></header>
+      <div class="content timeline">
+        <div class="step"><strong>Má»Ÿ khÃ³a</strong>Káº¿t ná»‘i ká»³ vá»ng<b>10â€²</b></div>
+        <div class="step"><strong>01</strong>Chá»n chá»§ Ä‘á»<b>20â€²</b></div>
+        <div class="step"><strong>02</strong>Chuáº©n bá»‹ phÃ¹ há»£p<b>25â€²</b></div>
+        <div class="step"><strong>03</strong>XÃ¢y máº¡ch ná»™i dung<b>35â€²</b></div>
+        <div class="step break"><strong>Náº¡p nÄƒng lÆ°á»£ng</strong>Nghá»‰<b>10â€²</b></div>
+        <div class="step"><strong>04â€“05</strong>AI, tÆ°Æ¡ng tÃ¡c & Ä‘á»©ng lá»›p<b>75â€²</b></div>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Há»c Ä‘á»ƒ lÃ m Ä‘Æ°á»£c</span></footer>
+      <aside class="speaker-notes"><p>Cho ngÆ°á»i há»c nhÃ¬n toÃ n bá»™ nhá»‹p há»c. Nháº¥n máº¡nh: má»—i pháº§n Ä‘á»u táº¡o ra má»™t sáº£n pháº©m nhá», cuá»‘i buá»•i ghÃ©p thÃ nh báº£n thiáº¿t káº¿ buá»•i há»c.</p></aside>
+    </section>
+
+    <section class="slide orange-wash" data-title="ÄÃ­ch Ä‘áº¿n" data-section="Khá»Ÿi Ä‘á»™ng" aria-hidden="true">
+      <header><div class="eyebrow">ÄÃ­ch Ä‘áº¿n</div><h2>Sau buá»•i há»c, báº¡n cÃ³ thá»ƒâ€¦</h2></header>
+      <div class="content grid-3">
+        <article class="card orange"><span class="big-number">01</span><h3>Chá»n Ä‘Ãºng</h3><p>Thu háº¹p má»™t chá»§ Ä‘á» thiáº¿t thá»±c vÃ  mÃ´ táº£ káº¿t quáº£ ngÆ°á»i há»c cáº§n Ä‘áº¡t.</p></article>
+        <article class="card"><span class="big-number">02</span><h3>Thiáº¿t káº¿ rÃµ</h3><p>Sáº¯p xáº¿p kiáº¿n thá»©c thÃ nh máº¡ch bÃ i vÃ  cÃ¡c khá»‘i há»c 10â€“15 phÃºt.</p></article>
+        <article class="card orange"><span class="big-number">03</span><h3>Dáº«n dáº¯t cÃ³ há»“n</h3><p>Táº¡o tÆ°Æ¡ng tÃ¡c, Ä‘áº·t cÃ¢u há»i vÃ  dÃ¹ng AI Ä‘Ãºng vai trÃ², an toÃ n.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>3 nÄƒng lá»±c cá»‘t lÃµi</span></footer>
+      <aside class="speaker-notes"><p>YÃªu cáº§u ngÆ°á»i há»c chá»n má»™t nÄƒng lá»±c há» muá»‘n cáº£i thiá»‡n nháº¥t. CÃ³ thá»ƒ bÃ¬nh chá»n báº±ng giÆ¡ tay.</p></aside>
+    </section>
+
+    <section class="slide" data-title="SÃ¡u cÃ¢u há»i Ä‘á»‹nh vá»‹" data-section="01 Â· Chá»n chá»§ Ä‘á»" aria-hidden="true">
+      <header><div class="eyebrow">Báº¯t Ä‘áº§u tá»« giÃ¡ trá»‹</div><h2>6 cÃ¢u há»i Ä‘á»ƒ chá»n chá»§ Ä‘á» Ä‘Ã¡ng dáº¡y</h2></header>
+      <div class="content grid-6">
+        <article class="card numbered"><span class="num">1</span><h3>Tháº¿ máº¡nh?</h3><p>Kinh nghiá»‡m Ä‘Ã£ lÃ m nhiá»u láº§n hoáº·c bÃ i há»c Ä‘Ã£ tráº£ giÃ¡.</p></article>
+        <article class="card numbered orange"><span class="num">2</span><h3>Chia sáº» gÃ¬?</h3><p>Má»™t cÃ¢u, má»™t chá»§ Ä‘á» â€” khÃ´ng gom má»i Ä‘iá»u mÃ¬nh biáº¿t.</p></article>
+        <article class="card numbered"><span class="num">3</span><h3>Giáº£i quyáº¿t gÃ¬?</h3><p>Lá»—i láº·p láº¡i, lÃ£ng phÃ­, cháº¥t lÆ°á»£ng hay quyáº¿t Ä‘á»‹nh khÃ³.</p></article>
+        <article class="card numbered orange"><span class="num">4</span><h3>LÃ m Ä‘Æ°á»£c gÃ¬?</h3><p>DÃ¹ng Ä‘á»™ng tá»« quan sÃ¡t Ä‘Æ°á»£c: chá»n, phÃ¢n tÃ­ch, thiáº¿t káº¿â€¦</p></article>
+        <article class="card numbered"><span class="num">5</span><h3>Dáº¡y cÃ¡ch nÃ o?</h3><p>Minh há»a, tÃ¬nh huá»‘ng, hÆ°á»›ng dáº«n hay thá»±c hÃ nh.</p></article>
+        <article class="card numbered orange"><span class="num">6</span><h3>Tham gia ra sao?</h3><p>BÃ¬nh chá»n, trao Ä‘á»•i, giáº£i tÃ¬nh huá»‘ng hoáº·c pháº£n há»“i.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Chá»§ Ä‘á» tá»‘t báº¯t Ä‘áº§u báº±ng nhu cáº§u tháº­t</span></footer>
+      <aside class="speaker-notes"><p>Cho há»c viÃªn 60 giÃ¢y nghÄ© vá» má»™t kinh nghiá»‡m há» Ä‘ang muá»‘n chia sáº». Äi nhanh qua sÃ¡u cÃ¢u há»i, khÃ´ng yÃªu cáº§u tráº£ lá»i hoÃ n chá»‰nh ngay.</p></aside>
+    </section>
+
+    <section class="slide dark" data-title="Thu háº¹p pháº¡m vi" data-section="01 Â· Chá»n chá»§ Ä‘á»" aria-hidden="true">
+      <header><div class="eyebrow">Thu háº¹p Ä‘á»ƒ táº¡o tÃ¡c Ä‘á»™ng</div><h2>Äiá»u tÃ´i biáº¿t â‰  Ä‘iá»u ngÆ°á»i há»c cáº§n</h2></header>
+      <div class="content split-visual">
+        <div class="scope-visual"><div class="scope-circle wide">Äiá»u tÃ´i biáº¿t<br><span class="small">rá»™ng Â· nhiá»u chi tiáº¿t Â· dá»… dÃ n tráº£i</span></div><div class="scope-circle focus">Äiá»u cáº§n há»c<br><span class="small">má»™t viá»‡c Â· má»™t thay Ä‘á»•i</span></div></div>
+        <div>
+          <p class="lead">Äá»«ng dáº¡y â€œtoÃ n bá»™ chá»§ Ä‘á»â€. HÃ£y dáº¡y Ä‘Ãºng pháº§n giÃºp ngÆ°á»i há»c hoÃ n thÃ nh má»™t nhiá»‡m vá»¥ cá»¥ thá»ƒ.</p>
+          <div class="card orange"><h3>BÃ i kiá»ƒm tra má»™t cÃ¢u</h3><p>Náº¿u chÆ°a mÃ´ táº£ Ä‘Æ°á»£c <strong>ngÆ°á»i há»c sáº½ lÃ m Ä‘Æ°á»£c gÃ¬</strong>, chá»§ Ä‘á» chÆ°a sáºµn sÃ ng Ä‘á»ƒ phÃ¡t triá»ƒn thÃ nh bÃ i giáº£ng.</p></div>
+        </div>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Less content. More change.</span></footer>
+      <aside class="speaker-notes"><p>Cho vÃ­ dá»¥ Ä‘á»‘i chiáº¿u: â€œQuáº£n trá»‹ rá»§i roâ€ lÃ  quÃ¡ rá»™ng; â€œNháº­n diá»‡n 3 tÃ­n hiá»‡u rá»§i ro trong bÆ°á»›c phÃª duyá»‡t Xâ€ cÃ³ thá»ƒ dáº¡y vÃ  kiá»ƒm tra Ä‘Æ°á»£c.</p></aside>
+    </section>
+
+    <section class="slide orange-wash" data-title="Phiáº¿u chá»n chá»§ Ä‘á»" data-section="01 Â· Thá»±c hÃ nh" aria-hidden="true">
+      <header><div class="eyebrow">Hoáº¡t Ä‘á»™ng 8 phÃºt</div><h2>Viáº¿t lá»i há»©a cá»§a buá»•i há»c</h2></header>
+      <div class="content">
+        <div class="action-box"><div><h3>TÃ´i sáº½ giÃºpâ€¦</h3><p>Äiá»n bá»‘n Ã´. Sau Ä‘Ã³ trao Ä‘á»•i theo cáº·p vÃ  thu háº¹p cÃ¢u chá»¯.</p></div><div class="time-chip"><strong>08:00</strong><button class="tag" data-timer="480" type="button">Báº¯t Ä‘áº§u</button></div></div>
+        <div class="activity-inputs" id="topicInputs">
+          <input aria-label="NhÃ³m ngÆ°á»i há»c" placeholder="[nhÃ³m ngÆ°á»i há»c]" />
+          <input aria-label="HÃ nh Ä‘á»™ng" placeholder="[thá»±c hiá»‡n hÃ nh Ä‘á»™ng]" />
+          <input aria-label="Bá»‘i cáº£nh" placeholder="[trong bá»‘i cáº£nh]" />
+          <input aria-label="Ná»™i dung cá»‘t lÃµi" placeholder="[ná»™i dung cá»‘t lÃµi]" />
+        </div>
+        <div class="sentence-output" id="topicSentence">TÃ´i sáº½ giÃºp â€¦ thá»±c hiá»‡n â€¦ trong â€¦ báº±ng cÃ¡ch chia sáº» â€¦</div>
+      </div>
+      <footer class="footerline"><span>3â€² viáº¿t Â· 3â€² trao Ä‘á»•i Â· 2â€² viáº¿t láº¡i</span><span>Sáº£n pháº©m: 1 cÃ¢u chá»§ Ä‘á» rÃµ rÃ ng</span></footer>
+      <aside class="speaker-notes"><p>Nháº¯c há»c viÃªn khÃ´ng viáº¿t tÃªn mÃ´n há»c; hÃ£y viáº¿t sá»± thay Ä‘á»•i mong muá»‘n á»Ÿ ngÆ°á»i há»c. Sau trao Ä‘á»•i cáº·p, má»i 2 ngÆ°á»i Ä‘á»c cÃ¢u trÆ°á»›c vÃ  sau khi sá»­a.</p></aside>
+    </section>
+
+    <section class="slide" data-title="ChÃ¢n dung ngÆ°á»i há»c" data-section="02 Â· Chuáº©n bá»‹" aria-hidden="true">
+      <header><div class="eyebrow">Thiáº¿t káº¿ tá»« ngÆ°á»i há»c</div><h2>4 cÃ¢u há»i táº¡o chÃ¢n dung Ä‘á»§ dÃ¹ng</h2></header>
+      <div class="content grid-2">
+        <article class="card"><h3>ðŸ‘¥ Há» lÃ  ai?</h3><p>Vai trÃ², kinh nghiá»‡m, má»©c hiá»ƒu biáº¿t ná»n vÃ  lÃ½ do tham gia.</p></article>
+        <article class="card orange"><h3>ðŸ§  Há» Ä‘Ã£ biáº¿t gÃ¬?</h3><p>Äiá»u cÃ³ thá»ƒ lÆ°á»£c bá»›t; thuáº­t ngá»¯ nÃ o cáº§n Ä‘Æ°á»£c giáº£i thÃ­ch.</p></article>
+        <article class="card orange"><h3>ðŸ§© Há» Ä‘ang vÆ°á»›ng gÃ¬?</h3><p>Nhiá»‡m vá»¥ khÃ³, lá»—i láº·p láº¡i, quyáº¿t Ä‘á»‹nh lÃ m máº¥t thá»i gian.</p></article>
+        <article class="card"><h3>ðŸŽ¯ Há» sáº½ dÃ¹ng á»Ÿ Ä‘Ã¢u?</h3><p>CÃ´ng viá»‡c hoáº·c tÃ¬nh huá»‘ng cho phÃ©p Ã¡p dá»¥ng ngay sau buá»•i há»c.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Äá»§ Ä‘á»ƒ quyáº¿t Ä‘á»‹nh â€” khÃ´ng cáº§n há»“ sÆ¡ dÃ i</span></footer>
+      <aside class="speaker-notes"><p>Gá»£i Ã½ kháº£o sÃ¡t trÆ°á»›c lá»›p báº±ng ba cÃ¢u: cÃ´ng viá»‡c hiá»‡n táº¡i, Ä‘iá»u khÃ³ nháº¥t, cÃ¡ch lÃ m muá»‘n mang vá».</p></aside>
+    </section>
+
+    <section class="slide dark" data-title="Má»¥c tiÃªu vÃ  nguá»“n" data-section="02 Â· Chuáº©n bá»‹" aria-hidden="true">
+      <header><div class="eyebrow">Hai má» neo</div><h2>Má»¥c tiÃªu rÃµ. Nguá»“n Ä‘Ã¡ng tin.</h2></header>
+      <div class="content grid-2">
+        <article class="card orange"><span class="tag">Má»¤C TIÃŠU</span><h3 style="margin-top:16px">Sau buá»•i há»c, ngÆ°á»i há»c cÃ³ thá»ƒâ€¦</h3><p><strong>[hÃ nh Ä‘á»™ng]</strong> vá»›i <strong>[tÃ¬nh huá»‘ng]</strong> theo <strong>[tiÃªu chÃ­]</strong>.</p><p class="small muted">TrÃ¡nh: hiá»ƒu, náº¯m, biáº¿t. Æ¯u tiÃªn: chá»n, phÃ¢n tÃ­ch, kiá»ƒm tra, thiáº¿t káº¿, xá»­ lÃ½.</p></article>
+        <article class="card"><span class="tag">NGUá»’N</span><h3 style="margin-top:16px">Ba lá»›p kiá»ƒm chá»©ng</h3><p>â‘  TÃ i liá»‡u gá»‘c<br>â‘¡ NgÆ°á»i kiá»ƒm tra chuyÃªn mÃ´n<br>â‘¢ VÃ­ dá»¥ gáº§n vá»›i cÃ´ng viá»‡c</p><p class="small muted">KhÃ´ng dÃ¹ng dá»¯ liá»‡u chÆ°a xÃ¡c minh.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>AI há»— trá»£ nhÃ¡p â€” ngÆ°á»i dáº¡y chá»‹u trÃ¡ch nhiá»‡m</span></footer>
+      <aside class="speaker-notes"><p>Má»i há»c viÃªn Ä‘á»•i má»™t má»¥c tiÃªu dÃ¹ng Ä‘á»™ng tá»« â€œhiá»ƒuâ€ thÃ nh hÃ nh Ä‘á»™ng cÃ³ thá»ƒ quan sÃ¡t. Nháº¥n máº¡nh nguá»“n ná»™i bá»™ cáº§n Ä‘Ãºng tháº©m quyá»n sá»­ dá»¥ng.</p></aside>
+    </section>
+
+    <section class="slide" data-title="SÃ¡u viá»‡c chuáº©n bá»‹" data-section="02 Â· Chuáº©n bá»‹" aria-hidden="true">
+      <header><div class="eyebrow">Báº£n chuáº©n bá»‹ má»™t trang</div><h2>6 quyáº¿t Ä‘á»‹nh trÆ°á»›c khi lÃ m slide</h2></header>
+      <div class="content grid-6">
+        <article class="card numbered"><span class="num">1</span><h3>Má»¥c tiÃªu</h3><p>Má»™t hÃ nh Ä‘á»™ng, bá»‘i cáº£nh vÃ  tiÃªu chÃ­.</p></article>
+        <article class="card numbered orange"><span class="num">2</span><h3>Nguá»“n & vÃ­ dá»¥</h3><p>TÃ i liá»‡u gá»‘c vÃ  vÃ­ dá»¥ gáº§n viá»‡c tháº­t.</p></article>
+        <article class="card numbered"><span class="num">3</span><h3>Pháº¡m vi</h3><p>Báº¯t buá»™c Â· nÃªn biáº¿t Â· tham kháº£o.</p></article>
+        <article class="card numbered orange"><span class="num">4</span><h3>TÆ°Æ¡ng tÃ¡c</h3><p>Há»i, minh há»a, tÃ¬nh huá»‘ng, thá»±c hÃ nh.</p></article>
+        <article class="card numbered"><span class="num">5</span><h3>Kiá»ƒm tra</h3><p>CÃ¢u há»i, quyáº¿t Ä‘á»‹nh hoáº·c sáº£n pháº©m.</p></article>
+        <article class="card numbered orange"><span class="num">6</span><h3>Dá»± phÃ²ng</h3><p>Thiáº¿t bá»‹, máº¡ng vÃ  phÆ°Æ¡ng Ã¡n offline.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Chuáº©n bá»‹ tá»‘t lÃ m giáº£m á»©ng biáº¿n khÃ´ng cáº§n thiáº¿t</span></footer>
+      <aside class="speaker-notes"><p>Nháº¥n máº¡nh phÃ¢n loáº¡i pháº¡m vi: chá»‰ pháº§n â€œbáº¯t buá»™câ€ Ä‘Æ°á»£c Æ°u tiÃªn trÃªn lá»›p. â€œNÃªn biáº¿tâ€ cÃ³ thá»ƒ Ä‘á»ƒ tÃ i liá»‡u Ä‘á»c thÃªm.</p></aside>
+    </section>
+
+    <section class="slide orange-wash" data-title="Kiá»ƒm tra Ä‘á»™ sáºµn sÃ ng" data-section="02 Â· TÆ°Æ¡ng tÃ¡c" aria-hidden="true">
+      <header><div class="eyebrow">Cháº¡m Ä‘á»ƒ kiá»ƒm tra</div><h2>Buá»•i há»c cá»§a báº¡n Ä‘Ã£ sáºµn sÃ ng?</h2></header>
+      <div class="content">
+        <div class="check-grid" id="readinessChecklist">
+          <button class="check-item" type="button">TÃ´i biáº¿t rÃµ ngÆ°á»i há»c</button>
+          <button class="check-item" type="button">Má»¥c tiÃªu quan sÃ¡t Ä‘Æ°á»£c</button>
+          <button class="check-item" type="button">Nguá»“n Ä‘Ã£ kiá»ƒm chá»©ng</button>
+          <button class="check-item" type="button">Pháº¡m vi Ä‘á»§ háº¹p</button>
+          <button class="check-item" type="button">CÃ³ cÃ¡ch kiá»ƒm tra</button>
+          <button class="check-item" type="button">CÃ³ phÆ°Æ¡ng Ã¡n dá»± phÃ²ng</button>
+        </div>
+        <div class="check-status" id="checkStatus">0/6 quyáº¿t Ä‘á»‹nh Ä‘Ã£ rÃµ</div>
+      </div>
+      <footer class="footerline"><span>ÄÃ¡nh dáº¥u theo tÃ¬nh tráº¡ng thá»±c táº¿</span><span>Sáº£n pháº©m: báº£n chuáº©n bá»‹ má»™t trang</span></footer>
+      <aside class="speaker-notes"><p>Má»—i ngÆ°á»i tá»± Ä‘Ã¡nh dáº¥u. Sau Ä‘Ã³ ngÆ°á»i cÃ¹ng bÃ n Ä‘á»c báº£n chuáº©n bá»‹ vÃ  chá»‰ ra má»™t má»¥c cÃ²n chung chung hoáº·c thiáº¿u nguá»“n.</p></aside>
+    </section>
+
+    <section class="slide" data-title="Khung nÄƒm bÆ°á»›c" data-section="03 Â· XÃ¢y ná»™i dung" aria-hidden="true">
+      <header><div class="eyebrow">Thiáº¿t káº¿ ngÆ°á»£c</div><h2>Khung 5 bÆ°á»›c xÃ¢y bÃ i</h2></header>
+      <div class="content flow">
+        <article class="flow-item"><span class="stepno">01 Â· Káº¾T QUáº¢</span><h3>LÃ m Ä‘Æ°á»£c gÃ¬?</h3><p>Má»™t má»¥c tiÃªu báº±ng hÃ nh Ä‘á»™ng.</p></article>
+        <article class="flow-item"><span class="stepno">02 Â· Báº°NG CHá»¨NG</span><h3>NhÃ¬n vÃ o Ä‘Ã¢u?</h3><p>CÃ¢u tráº£ lá»i, quyáº¿t Ä‘á»‹nh, sáº£n pháº©m.</p></article>
+        <article class="flow-item"><span class="stepno">03 Â· Máº CH BÃ€I</span><h3>Äi theo thá»© tá»± nÃ o?</h3><p>Má»™t cáº¥u trÃºc dá»… hiá»ƒu.</p></article>
+        <article class="flow-item"><span class="stepno">04 Â· KHá»I Há»ŒC</span><h3>Nhá»› gÃ¬, lÃ m gÃ¬?</h3><p>CÃ¡c khá»‘i 10â€“15 phÃºt.</p></article>
+        <article class="flow-item"><span class="stepno">05 Â· ÃP Dá»¤NG</span><h3>DÃ¹ng á»Ÿ Ä‘Ã¢u?</h3><p>Má»™t bÆ°á»›c sau buá»•i há»c.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Báº¯t Ä‘áº§u tá»« káº¿t quáº£, khÃ´ng báº¯t Ä‘áº§u tá»« slide</span></footer>
+      <aside class="speaker-notes"><p>Äi tá»« pháº£i sang trÃ¡i khi thiáº¿t káº¿: chá»‘t Ã¡p dá»¥ng vÃ  báº±ng chá»©ng trÆ°á»›c, sau Ä‘Ã³ má»›i chá»n ná»™i dung. Khi giáº£ng, trÃ¬nh bÃ y theo chiá»u trÃ¡i sang pháº£i.</p></aside>
+    </section>
+
+    <section class="slide orange-wash" data-title="CÃ´ng thá»©c 1â€“3â€“1" data-section="03 Â· XÃ¢y ná»™i dung" aria-hidden="true">
+      <header><div class="eyebrow">Má»™t khá»‘i há»c 10â€“15 phÃºt</div><h2>CÃ´ng thá»©c <span class="accent">1â€“3â€“1</span></h2></header>
+      <div class="content formula">
+        <div class="token orange"><div><span class="big-number" style="color:white">1</span><h3>ThÃ´ng Ä‘iá»‡p</h3><span>Náº¿u chá»‰ nhá»› má»™t Ä‘iá»uâ€¦</span></div></div>
+        <span class="operator">+</span>
+        <div class="token"><div><span class="big-number" style="color:var(--sky)">3</span><h3>Ã há»— trá»£</h3><span>BÆ°á»›c Â· lÃ½ do Â· báº±ng chá»©ng</span></div></div>
+        <span class="operator">+</span>
+        <div class="token orange"><div><span class="big-number" style="color:white">1</span><h3>Viá»‡c pháº£i lÃ m</h3><span>Tráº£ lá»i Â· chá»n Â· sá»­a Â· thá»­</span></div></div>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Má»™t nhá»‹p ngáº¯n, má»™t dáº¥u áº¥n rÃµ</span></footer>
+      <aside class="speaker-notes"><p>Cho vÃ­ dá»¥: thÃ´ng Ä‘iá»‡p â€œPháº£n há»“i táº­p trung vÃ o hÃ nh vi quan sÃ¡t Ä‘Æ°á»£câ€; ba Ã½ lÃ  mÃ´ táº£â€“tÃ¡c Ä‘á»™ngâ€“bÆ°á»›c tiáº¿p theo; viá»‡c lÃ m lÃ  sá»­a má»™t cÃ¢u pháº£n há»“i chung chung.</p></aside>
+    </section>
+
+    <section class="slide" data-title="Bá»‘n máº¡ch bÃ i" data-section="03 Â· XÃ¢y ná»™i dung" aria-hidden="true">
+      <header><div class="eyebrow">Chá»n Ä‘Æ°á»ng Ä‘i</div><h2>4 máº¡ch bÃ i dá»… sá»­ dá»¥ng</h2></header>
+      <div class="content grid-2">
+        <article class="card"><span class="tag">01</span><h3 style="margin-top:12px">Theo quy trÃ¬nh</h3><p>PhÃ¹ há»£p vá»›i thao tÃ¡c, cÃ´ng viá»‡c cÃ³ trÃ¬nh tá»± hoáº·c hÆ°á»›ng dáº«n cÃ´ng cá»¥.</p></article>
+        <article class="card orange"><span class="tag">02</span><h3 style="margin-top:12px">Váº¥n Ä‘á» â†’ cÃ¡ch xá»­ lÃ½</h3><p>Äi tá»« lá»—i, nguyÃªn nhÃ¢n, rá»§i ro Ä‘áº¿n phÆ°Æ¡ng Ã¡n kháº¯c phá»¥c.</p></article>
+        <article class="card orange"><span class="tag">03</span><h3 style="margin-top:12px">KhÃ¡i niá»‡m â†’ Ã¡p dá»¥ng</h3><p>Giá»›i thiá»‡u kiáº¿n thá»©c má»›i, minh há»a rá»“i cho ngÆ°á»i há»c thá»­ dÃ¹ng.</p></article>
+        <article class="card"><span class="tag">04</span><h3 style="margin-top:12px">TÃ¬nh huá»‘ng â†’ bÃ i há»c</h3><p>Äá»ƒ lá»›p phÃ¢n tÃ­ch trÆ°á»›c, sau Ä‘Ã³ ngÆ°á»i dáº¡y rÃºt ra nguyÃªn táº¯c.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Máº¡ch bÃ i phá»¥c vá»¥ má»¥c tiÃªu, khÃ´ng pháº£i sá»Ÿ thÃ­ch</span></footer>
+      <aside class="speaker-notes"><p>Há»i nhanh: chá»§ Ä‘á» cá»§a tá»«ng ngÆ°á»i há»£p vá»›i máº¡ch nÃ o? Náº¿u cÃ³ nhiá»u Ä‘Ã¡p Ã¡n, yÃªu cáº§u giáº£i thÃ­ch dá»±a trÃªn loáº¡i nhiá»‡m vá»¥ ngÆ°á»i há»c pháº£i lÃ m.</p></aside>
+    </section>
+
+    <section class="slide orange-wash" data-title="XÃ¢y má»™t khá»‘i há»c" data-section="03 Â· Thá»±c hÃ nh" aria-hidden="true">
+      <header><div class="eyebrow">Hoáº¡t Ä‘á»™ng 15 phÃºt</div><h2>Dá»±ng khá»‘i há»c Ä‘áº§u tiÃªn</h2></header>
+      <div class="content">
+        <div class="builder">
+          <label>1 thÃ´ng Ä‘iá»‡p<textarea placeholder="Náº¿u chá»‰ nhá»› má»™t Ä‘iá»uâ€¦"></textarea></label>
+          <label>3 Ã½ há»— trá»£<textarea placeholder="1. â€¦&#10;2. â€¦&#10;3. â€¦"></textarea></label>
+          <label>1 viá»‡c pháº£i lÃ m<textarea placeholder="NgÆ°á»i há»c sáº½ tráº£ lá»i, lá»±a chá»n, sá»­a hay thá»±c hÃ nh gÃ¬?"></textarea></label>
+        </div>
+        <div class="action-box" style="margin-top:14px"><div><h3>Chá»‘t thÃªm hai quyáº¿t Ä‘á»‹nh</h3><p>Chá»n má»™t máº¡ch bÃ i vÃ  má»™t báº±ng chá»©ng cho tháº¥y ngÆ°á»i há»c lÃ m Ä‘Æ°á»£c.</p></div><div class="time-chip"><strong>15:00</strong><button class="tag" data-timer="900" type="button">Báº¯t Ä‘áº§u</button></div></div>
+      </div>
+      <footer class="footerline"><span>NhÃ³m 2â€“3 ngÆ°á»i Â· 10â€² thiáº¿t káº¿ Â· 5â€² pháº£n há»“i</span><span>Sáº£n pháº©m: 1 khá»‘i 1â€“3â€“1</span></footer>
+      <aside class="speaker-notes"><p>Äá» nghá»‹ nhÃ³m dÃ¹ng chÃ­nh chá»§ Ä‘á» cá»§a má»™t thÃ nh viÃªn. Khi pháº£n há»“i, chá»‰ kiá»ƒm tra ba Ä‘iá»ƒm: má»¥c tiÃªu rÃµ, máº¡ch há»£p lÃ½, hoáº¡t Ä‘á»™ng táº¡o Ä‘Æ°á»£c báº±ng chá»©ng.</p></aside>
+    </section>
+
+    <section class="slide dark" data-title="AI Ä‘Ãºng vai" data-section="04 Â· AI há»— trá»£" aria-hidden="true">
+      <header><div class="eyebrow">AI lÃ  trá»£ lÃ½, khÃ´ng lÃ  ngÆ°á»i chá»‹u trÃ¡ch nhiá»‡m</div><h2>3 nguyÃªn táº¯c trÆ°á»›c khi má»Ÿ cÃ´ng cá»¥</h2></header>
+      <div class="content grid-3">
+        <article class="card orange"><span class="big-number">01</span><h3>LÃ m rÃµ quan há»‡</h3><p>Chá»‰ trá»±c quan hÃ³a khi cáº§n tháº¥y thá»© tá»±, so sÃ¡nh, nguyÃªn nhÃ¢n, phÃ¢n cáº¥p hoáº·c lá»±a chá»n.</p></article>
+        <article class="card"><span class="big-number">02</span><h3>AI táº¡o báº£n nhÃ¡p</h3><p>NgÆ°á»i dáº¡y sá»­a ná»™i dung, thuáº­t ngá»¯, dá»¯ liá»‡u, Ä‘Ã¡p Ã¡n vÃ  má»©c Ä‘á»™ phÃ¹ há»£p.</p></article>
+        <article class="card orange"><span class="big-number">03</span><h3>Dá»¯ liá»‡u an toÃ n</h3><p>Chá»‰ dÃ¹ng dá»¯ liá»‡u giáº£ láº­p hoáº·c cÃ´ng khai; khÃ´ng táº£i dá»¯ liá»‡u máº­t hay chÆ°a Ä‘Æ°á»£c phÃ©p.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>RÃµ má»¥c Ä‘Ã­ch Â· kiá»ƒm tra Ä‘áº§u ra Â· báº£o vá»‡ dá»¯ liá»‡u</span></footer>
+      <aside class="speaker-notes"><p>KhÃ´ng trÃ¬nh diá»…n cÃ´ng cá»¥ á»Ÿ pháº§n nÃ y. Táº­p trung vÃ o tiÃªu chuáº©n ra quyáº¿t Ä‘á»‹nh: khi nÃ o cáº§n AI, ai kiá»ƒm tra, dá»¯ liá»‡u nÃ o Ä‘Æ°á»£c phÃ©p dÃ¹ng.</p></aside>
+    </section>
+
+    <section class="slide" data-title="Chá»n tÆ°Æ¡ng tÃ¡c" data-section="04 Â· TÆ°Æ¡ng tÃ¡c" aria-hidden="true">
+      <header><div class="eyebrow">Má»¥c tiÃªu quyáº¿t Ä‘á»‹nh hÃ¬nh thá»©c</div><h2>Äá»«ng há»i â€œdÃ¹ng cÃ´ng cá»¥ gÃ¬?â€ quÃ¡ sá»›m</h2></header>
+      <div class="content grid-4">
+        <article class="card"><span class="tag">KIáº¾N THá»¨C Má»šI</span><h3 style="margin-top:14px">Há»i + minh há»a</h3><p>Gá»i hiá»ƒu biáº¿t ná»n, lÃ m rÃµ khÃ¡i niá»‡m, kiá»ƒm tra báº±ng cÃ¢u há»i ngáº¯n.</p></article>
+        <article class="card orange"><span class="tag">Ká»¸ NÄ‚NG</span><h3 style="margin-top:14px">Thá»±c hÃ nh</h3><p>Cho lÃ m má»™t pháº§n viá»‡c tháº­t vÃ  pháº£n há»“i ngay vÃ o cÃ¡ch lÃ m.</p></article>
+        <article class="card"><span class="tag">Lá»šP GIÃ€U KINH NGHIá»†M</span><h3 style="margin-top:14px">TÃ¬nh huá»‘ng</h3><p>Äá»ƒ ngÆ°á»i há»c phÃ¢n tÃ­ch vÃ  so sÃ¡nh cÃ¡ch xá»­ lÃ½ trÆ°á»›c khi chá»‘t.</p></article>
+        <article class="card orange"><span class="tag">Máº¤T Máº NG?</span><h3 style="margin-top:14px">TÆ°Æ¡ng tÃ¡c offline</h3><p>Tháº» A/B/C, giÆ¡ tay, giáº¥y ghi chÃº hoáº·c trao Ä‘á»•i theo cáº·p.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>CÃ´ng cá»¥ cÃ³ thá»ƒ thay â€” má»¥c tiÃªu khÃ´ng Ä‘á»•i</span></footer>
+      <aside class="speaker-notes"><p>Cho ngÆ°á»i há»c nÃªu má»™t tÆ°Æ¡ng tÃ¡c online vÃ  phÆ°Æ¡ng Ã¡n offline tÆ°Æ¡ng Ä‘Æ°Æ¡ng. Chá»‘t ráº±ng cÃ´ng nghá»‡ chá»‰ lÃ  kÃªnh tá»• chá»©c hoáº¡t Ä‘á»™ng.</p></aside>
+    </section>
+
+    <section class="slide orange-wash" data-title="Bá»‘n nguyÃªn táº¯c Ä‘á»©ng lá»›p" data-section="05 Â· Äá»©ng lá»›p" aria-hidden="true">
+      <header><div class="eyebrow">Lá»›p há»c cÃ³ nhá»‹p vÃ  cÃ³ há»“n</div><h2>4 nguyÃªn táº¯c Ä‘á»©ng lá»›p</h2></header>
+      <div class="content grid-2">
+        <article class="card orange"><h3>01 Â· Thu hÃºt báº±ng váº¥n Ä‘á» tháº­t</h3><p>Má»Ÿ báº±ng tÃ¬nh huá»‘ng, lá»±a chá»n khÃ³, lá»—i thÆ°á»ng gáº·p hoáº·c káº¿t quáº£ báº¥t ngá».</p></article>
+        <article class="card"><h3>02 Â· Há»i Ä‘á»ƒ ngÆ°á»i há»c suy nghÄ©</h3><p>CÃ¢u há»i cá»¥ thá»ƒ, cÃ³ thá»i gian nghÄ©, cÃ³ cÃ¢u há»i tiáº¿p vá» lÃ½ do vÃ  Ã¡p dá»¥ng.</p></article>
+        <article class="card"><h3>03 Â· Cho lÃ m vÃ  pháº£n há»“i ngay</h3><p>Sau trÃ¬nh bÃ y, yÃªu cáº§u quyáº¿t Ä‘á»‹nh, sá»­a, thá»­ hoáº·c giáº£i thÃ­ch.</p></article>
+        <article class="card orange"><h3>04 Â· Táº¡o khÃ´ng khÃ­ an toÃ n</h3><p>TÃ´n trá»ng kinh nghiá»‡m, cho phÃ©p sai trong bÃ i táº­p vÃ  phÃ¢n bá»• cÆ¡ há»™i nÃ³i.</p></article>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>NghÄ© Â· nÃ³i Â· lÃ m Â· nháº­n pháº£n há»“i</span></footer>
+      <aside class="speaker-notes"><p>YÃªu cáº§u má»—i ngÆ°á»i tá»± chá»n nguyÃªn táº¯c mÃ¬nh hay bá» quÃªn nháº¥t. Nháº¥n máº¡nh â€œmá»i ngÆ°á»i cÃ³ hiá»ƒu khÃ´ng?â€ khÃ´ng táº¡o báº±ng chá»©ng há»c táº­p.</p></aside>
+    </section>
+
+    <section class="slide" data-title="CÃ¢u há»i gá»£i má»Ÿ" data-section="05 Â· Äá»©ng lá»›p" aria-hidden="true">
+      <header><div class="eyebrow">Äi tá»« tráº£i nghiá»‡m Ä‘áº¿n hÃ nh Ä‘á»™ng</div><h2>Thang 5 cÃ¢u há»i gá»£i má»Ÿ</h2></header>
+      <div class="content question-list">
+        <div class="question-row"><b>1</b><p><strong>Gá»i kinh nghiá»‡m:</strong> Anh/chá»‹ Ä‘Ã£ gáº·p tÃ¬nh huá»‘ng tÆ°Æ¡ng tá»± á»Ÿ Ä‘Ã¢u?</p></div>
+        <div class="question-row"><b>2</b><p><strong>Quan sÃ¡t:</strong> Chi tiáº¿t nÃ o trong vÃ­ dá»¥ nÃ y Ä‘Ã¡ng chÃº Ã½ nháº¥t?</p></div>
+        <div class="question-row"><b>3</b><p><strong>TÃ¬m lÃ½ do:</strong> VÃ¬ sao cÃ¡ch nÃ y hiá»‡u quáº£ hoáº·c chÆ°a hiá»‡u quáº£?</p></div>
+        <div class="question-row"><b>4</b><p><strong>ÄÆ°a ra lá»±a chá»n:</strong> Náº¿u Ä‘iá»u kiá»‡n thay Ä‘á»•i, anh/chá»‹ sáº½ chá»n phÆ°Æ¡ng Ã¡n nÃ o?</p></div>
+        <div class="question-row"><b>5</b><p><strong>Chuyá»ƒn sang Ã¡p dá»¥ng:</strong> Trong cÃ´ng viá»‡c, bÆ°á»›c nÃ o cÃ³ thá»ƒ thá»­ ngay?</p></div>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>CÃ¢u há»i tá»‘t cÃ³ Ä‘Ã­ch Ä‘áº¿n</span></footer>
+      <aside class="speaker-notes"><p>Äá»c má»™t cÃ¢u há»i chung chung, yÃªu cáº§u lá»›p viáº¿t láº¡i theo má»™t báº­c trong thang. Chá» 5â€“7 giÃ¢y trÆ°á»›c khi má»i tráº£ lá»i.</p></aside>
+    </section>
+
+    <section class="slide dark" data-title="Xá»­ lÃ½ lá»›p im láº·ng" data-section="05 Â· TÆ°Æ¡ng tÃ¡c" aria-hidden="true">
+      <header><div class="eyebrow">TÃ¬nh huá»‘ng nhanh</div><h2>Lá»›p im láº·ng sau má»™t cÃ¢u há»i má»Ÿ. Báº¡n lÃ m gÃ¬?</h2></header>
+      <div class="content">
+        <div class="poll" data-feedback="Thu háº¹p cÃ¢u há»i, cho suy nghÄ© cÃ¡ nhÃ¢n rá»“i trao Ä‘á»•i cáº·p giÃºp giáº£m Ã¡p lá»±c vÃ  tÄƒng cháº¥t lÆ°á»£ng cÃ¢u tráº£ lá»i.">
+          <button type="button"><strong>A</strong><br>Gá»i ngay má»™t ngÆ°á»i báº¥t ká»³ tráº£ lá»i</button>
+          <button type="button" data-best="true"><strong>B</strong><br>Thu háº¹p cÃ¢u há»i â†’ nghÄ© cÃ¡ nhÃ¢n â†’ trao Ä‘á»•i cáº·p</button>
+          <button type="button"><strong>C</strong><br>Tá»± tráº£ lá»i vÃ  chuyá»ƒn sang ná»™i dung tiáº¿p theo</button>
+        </div>
+        <div class="poll-result" aria-live="polite"></div>
+        <div class="grid-2" style="margin-top:14px">
+          <div class="card"><h3>Dá»± Ä‘oÃ¡n Â· bÃ¬nh chá»n Â· giáº£i thÃ­ch</h3><p>Ba lá»±a chá»n â†’ bÃ¬nh chá»n cÃ¹ng lÃºc â†’ hai gÃ³c nhÃ¬n â†’ chá»‘t nguyÃªn táº¯c.</p></div>
+          <div class="card orange"><h3>Suy nghÄ© Â· cáº·p Ä‘Ã´i Â· chia sáº»</h3><p>30â€“60 giÃ¢y nghÄ© â†’ 2 phÃºt trao Ä‘á»•i â†’ má»i chia sáº» â†’ ná»‘i vá»›i bÃ i.</p></div>
+        </div>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Äá»•i nhá»‹p sau má»—i 15â€“20 phÃºt</span></footer>
+      <aside class="speaker-notes"><p>Cho cáº£ lá»›p bÃ¬nh chá»n cÃ¹ng lÃºc trÆ°á»›c khi báº¥m Ä‘Ã¡p Ã¡n. Má»i má»™t ngÆ°á»i chá»n A/C nÃªu lÃ½ do, sau Ä‘Ã³ chá»‘t ká»¹ thuáº­t á»Ÿ B.</p></aside>
+    </section>
+
+    <section class="slide orange-wash" data-title="Cam káº¿t Ã¡p dá»¥ng" data-section="Káº¿t thÃºc" aria-hidden="true">
+      <header><div class="eyebrow">Chá»‘t Ä‘á»ƒ chuyá»ƒn hÃ³a</div><h2>Buá»•i dáº¡y tiáº¿p theo, tÃ´i sáº½ thá»­â€¦</h2></header>
+      <div class="content">
+        <div class="quote" contenteditable="true" role="textbox" aria-label="Cam káº¿t Ã¡p dá»¥ng">â€œTrong buá»•i dáº¡y sáº¯p tá»›i, tÃ´i sáº½ thá»­â€¦â€</div>
+        <div class="grid-3" style="margin-top:22px">
+          <article class="card"><h3>01 Â· Má»™t cÃ¢u má»Ÿ Ä‘áº§u</h3><p>Gáº¯n vá»›i váº¥n Ä‘á» tháº­t cá»§a ngÆ°á»i há»c.</p></article>
+          <article class="card orange"><h3>02 Â· Má»™t cÃ¢u há»i</h3><p>Dáº«n tá»« quan sÃ¡t Ä‘áº¿n lÃ½ do hoáº·c Ã¡p dá»¥ng.</p></article>
+          <article class="card"><h3>03 Â· Má»™t hoáº¡t Ä‘á»™ng</h3><p>Táº¡o ra cÃ¢u tráº£ lá»i, quyáº¿t Ä‘á»‹nh hoáº·c sáº£n pháº©m.</p></article>
+        </div>
+      </div>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Há»c xong khi báº¯t Ä‘áº§u lÃ m khÃ¡c Ä‘i</span></footer>
+      <aside class="speaker-notes"><p>Cho 2 phÃºt viáº¿t cam káº¿t, 2 phÃºt trao Ä‘á»•i cáº·p vÃ  1 phÃºt má»i má»™t ngÆ°á»i chia sáº». Káº¿t thÃºc báº±ng cÃ¡ch nháº¯c láº¡i ba Ä‘Ã­ch Ä‘áº¿n Ä‘áº§u buá»•i.</p></aside>
+    </section>
+
+  </main>
+
+  <div class="help"><kbd>â†</kbd> <kbd>â†’</kbd> Ä‘iá»u hÆ°á»›ng Â· <kbd>M</kbd> má»¥c lá»¥c Â· <kbd>N</kbd> ghi chÃº Â· <kbd>F</kbd> toÃ n mÃ n hÃ¬nh</div>
+  <nav class="controls" aria-label="Äiá»u khiá»ƒn trÃ¬nh chiáº¿u">
+    <button class="control-btn optional" id="mapBtn" type="button" aria-label="Má»Ÿ má»¥c lá»¥c" title="Má»¥c lá»¥c (M)">â˜·</button>
+    <button class="control-btn" id="prevBtn" type="button" aria-label="Trang trÆ°á»›c" title="Trang trÆ°á»›c">â†</button>
+    <span class="counter" id="counter">01 / 20</span>
+    <button class="control-btn" id="nextBtn" type="button" aria-label="Trang sau" title="Trang sau">â†’</button>
+    <button class="control-btn optional" id="notesBtn" type="button" aria-label="Ghi chÃº giáº£ng viÃªn" title="Ghi chÃº (N)">â–¤</button>
+    <button class="control-btn optional" id="fullBtn" type="button" aria-label="ToÃ n mÃ n hÃ¬nh" title="ToÃ n mÃ n hÃ¬nh (F)">â›¶</button>
+  </nav>
+  <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  <aside class="notes-panel" id="notesPanel" aria-live="polite"><strong>Ghi chÃº giáº£ng viÃªn</strong><div id="notesContent"></div></aside>
+  <div class="timer" id="timer"><span>Hoáº¡t Ä‘á»™ng</span><span class="timer-value" id="timerValue">00:00</span><button id="timerClose" type="button" aria-label="ÄÃ³ng Ä‘á»“ng há»“">Ã—</button></div>
+
+  <dialog id="mapDialog">
+    <div class="map-head"><h3>Má»¥c lá»¥c bÃ i giáº£ng</h3><button class="map-close" type="button" aria-label="ÄÃ³ng">Ã—</button></div>
+    <div class="map-grid" id="mapGrid"></div>
+  </dialog>
+
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll('.slide')];
+      const counter = document.getElementById('counter');
+      const progress = document.getElementById('progressBar');
+      const notesPanel = document.getElementById('notesPanel');
+      const notesContent = document.getElementById('notesContent');
+      const mapDialog = document.getElementById('mapDialog');
+      const mapGrid = document.getElementById('mapGrid');
+      let index = Math.max(0, Math.min(slides.length - 1, Number(location.hash.replace('#/', '')) - 1 || 0));
+      let touchStartX = 0;
+      let timerHandle = null;
+
+      const pad = n => String(n).padStart(2, '0');
+      function renderNotes() {
+        const notes = slides[index].querySelector('.speaker-notes');
+        notesContent.innerHTML = notes ? notes.innerHTML : '<p>KhÃ´ng cÃ³ ghi chÃº cho trang nÃ y.</p>';
+      }
+      function goTo(next, updateHash = true) {
+        next = Math.max(0, Math.min(slides.length - 1, next));
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('current', i === next);
+          slide.classList.toggle('exit-left', i < next);
+          slide.setAttribute('aria-hidden', i === next ? 'false' : 'true');
+        });
+        index = next;
+        counter.textContent = `${pad(index + 1)} / ${pad(slides.length)}`;
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        document.title = `${slides[index].dataset.title} Â· PVEP`;
+        renderNotes();
+        if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+      }
+      function toggleNotes() { notesPanel.classList.toggle('open'); renderNotes(); }
+      function toggleMap() { mapDialog.open ? mapDialog.close() : mapDialog.showModal(); }
+      async function toggleFullscreen() {
+        try { document.fullscreenElement ? await document.exitFullscreen() : await document.documentElement.requestFullscreen(); } catch (_) {}
+      }
+
+      slides.forEach((slide, i) => {
+        const button = document.createElement('button');
+        button.className = 'map-card';
+        button.type = 'button';
+        button.innerHTML = `<b>${pad(i + 1)}</b><span>${slide.dataset.title}</span>`;
+        button.addEventListener('click', () => { mapDialog.close(); goTo(i); });
+        mapGrid.appendChild(button);
+      });
+
+      document.getElementById('prevBtn').addEventListener('click', () => goTo(index - 1));
+      document.getElementById('nextBtn').addEventListener('click', () => goTo(index + 1));
+      document.getElementById('mapBtn').addEventListener('click', toggleMap);
+      document.getElementById('notesBtn').addEventListener('click', toggleNotes);
+      document.getElementById('fullBtn').addEventListener('click', toggleFullscreen);
+      mapDialog.querySelector('.map-close').addEventListener('click', () => mapDialog.close());
+
+      document.addEventListener('keydown', event => {
+        if (event.target.closest('input, textarea, [contenteditable="true"], button, a')) return;
+        if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); goTo(index + 1); }
+        if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); goTo(index - 1); }
+        if (event.key === 'Home') goTo(0);
+        if (event.key === 'End') goTo(slides.length - 1);
+        if (event.key.toLowerCase() === 'm') toggleMap();
+        if (event.key.toLowerCase() === 'n') toggleNotes();
+        if (event.key.toLowerCase() === 'f') toggleFullscreen();
+      });
+      window.addEventListener('hashchange', () => goTo(Number(location.hash.replace('#/', '')) - 1 || 0, false));
+      document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      document.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 70) goTo(index + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      const topicInputs = [...document.querySelectorAll('#topicInputs input')];
+      topicInputs.forEach(input => input.addEventListener('input', () => {
+        const v = topicInputs.map((el, i) => el.value.trim() || ['â€¦','â€¦','â€¦','â€¦'][i]);
+        document.getElementById('topicSentence').textContent = `TÃ´i sáº½ giÃºp ${v[0]} thá»±c hiá»‡n ${v[1]} trong ${v[2]} báº±ng cÃ¡ch chia sáº» ${v[3]}.`;
+      }));
+
+      document.querySelectorAll('.check-item').forEach(item => item.addEventListener('click', () => {
+        item.classList.toggle('done');
+        const count = document.querySelectorAll('.check-item.done').length;
+        document.getElementById('checkStatus').textContent = count === 6 ? '6/6 â€” Sáºµn sÃ ng Ä‘á»ƒ phÃ¡t triá»ƒn bÃ i giáº£ng!' : `${count}/6 quyáº¿t Ä‘á»‹nh Ä‘Ã£ rÃµ`;
+      }));
+
+      document.querySelectorAll('.poll').forEach(poll => {
+        poll.querySelectorAll('button').forEach(button => button.addEventListener('click', () => {
+          poll.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+          button.classList.add('selected');
+          const result = poll.parentElement.querySelector('.poll-result');
+          result.innerHTML = button.dataset.best ? `<strong>PhÆ°Æ¡ng Ã¡n phÃ¹ há»£p nháº¥t.</strong> ${poll.dataset.feedback}` : `<strong>Má»™t lá»±a chá»n thÆ°á»ng gáº·p.</strong> ${poll.dataset.feedback}`;
+          result.classList.add('show');
+        }));
+      });
+
+      function startTimer(seconds) {
+        clearInterval(timerHandle);
+        const timer = document.getElementById('timer');
+        const value = document.getElementById('timerValue');
+        let remaining = seconds;
+        const draw = () => { value.textContent = `${pad(Math.floor(remaining / 60))}:${pad(remaining % 60)}`; };
+        timer.classList.add('active'); draw();
+        timerHandle = setInterval(() => {
+          remaining -= 1; draw();
+          if (remaining <= 0) { clearInterval(timerHandle); value.textContent = 'Háº¾T GIá»œ'; }
+        }, 1000);
+      }
+      document.querySelectorAll('[data-timer]').forEach(button => button.addEventListener('click', () => startTimer(Number(button.dataset.timer))));
+      document.getElementById('timerClose').addEventListener('click', () => { clearInterval(timerHandle); document.getElementById('timer').classList.remove('active'); });
+
+      goTo(index, false);
+    })();
+  </script>
+</body>
+</html>
+
