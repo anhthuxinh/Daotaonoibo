@@ -1,33 +1,34 @@
 # Bài giảng Giảng viên nội bộ PVEP
 
-Bộ slide HTML gồm 20 trang, được xây dựng từ giáo án **“Thiết kế và thực hiện buổi học hiệu quả với sự hỗ trợ của AI”**.
+Bộ slide HTML gồm 19 trang, bám theo bản PowerPoint đã được người dùng điều chỉnh. Số trang được chuẩn hóa thành 01/19–19/19.
 
 ## Cách sử dụng
 
 1. Mở `index.html` bằng Chrome, Edge hoặc Safari.
 2. Dùng phím mũi tên trái/phải để chuyển trang.
-3. Nhấn `M` để mở mục lục, `N` để xem ghi chú giảng viên, `F` để trình chiếu toàn màn hình.
+3. Nhấn nút `☰` để mở danh sách slide, `F` để trình chiếu toàn màn hình.
 4. Trên điện thoại hoặc máy tính bảng, vuốt trái/phải để chuyển slide.
 5. Muốn xuất PDF: mở trang, nhấn `Ctrl + P`, chọn **Save as PDF**, khổ ngang và bật **Background graphics**.
 
 ## Chỉnh nội dung mà không cần biết code
 
 1. Mở bộ slide và đi đến trang cần sửa.
-2. Nhấn nút **✎** ở thanh điều khiển phía dưới hoặc nhấn phím `E`.
+2. Nhấn nút **✎ Chỉnh sửa** ở góc trên bên phải hoặc nhấn phím `E`.
 3. Bấm trực tiếp vào tiêu đề hoặc đoạn chữ rồi sửa như trong Word.
-4. Nhấn **✓** khi sửa xong. Nội dung được lưu trên chính trình duyệt đang dùng.
-5. Nhấn nút **⇩** để tải bản đã sửa. File tải về luôn có tên `index.html`.
+4. Nếu muốn chỉnh một ô/shape: bấm chọn ô, sau đó dùng bảng **Studio chỉnh sửa** để đổi màu nhấn, tăng giảm cỡ chữ hoặc dịch chuyển.
+5. Nhấn **✓ Xong** khi sửa xong. Nội dung được lưu trên chính trình duyệt đang dùng.
+6. Nhấn **Tải HTML đã chỉnh** để tải file hoàn chỉnh. File tải về luôn có tên `index.html`.
 
 Để cập nhật bản trên GitHub: mở repository, chọn **Add file → Upload files**, kéo file `index.html` mới vào, sau đó chọn **Commit changes**. Bạn cũng có thể gửi lại file `index.html` cho Codex để được cập nhật hộ.
 
 ## Tương tác có sẵn
 
-- Phiếu chọn chủ đề với câu hoàn chỉnh tự động.
-- Bảng kiểm mức độ sẵn sàng.
-- Khung soạn hoạt động 1–3–1.
-- Đồng hồ đếm ngược cho hoạt động nhóm.
-- Tình huống bình chọn và phản hồi tức thì.
-- Mục lục, ghi chú giảng viên, toàn màn hình và điều hướng bàn phím/chạm.
+- Kéo–thả hoàn thiện phiếu chọn chủ đề.
+- Kéo–thả hoàn thiện bản chuẩn bị buổi học.
+- Kéo–thả phân loại nội dung “Cần học trên lớp / Để tham khảo”.
+- Kéo–thả ghép hoạt động với đúng mục tiêu đào tạo.
+- Kéo–thả hoàn thiện cam kết áp dụng cuối khóa.
+- Danh sách slide, toàn màn hình và điều hướng bàn phím/chạm.
 - Hiệu ứng nổi, nghiêng nhẹ và đổ bóng khi rê chuột lên thẻ nội dung.
 
 ## Nguồn thiết kế và hình ảnh
