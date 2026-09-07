@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="BÃ i giáº£ng Ä‘Ã o táº¡o giáº£ng viÃªn ná»™i bá»™ PVEP: thiáº¿t káº¿ vÃ  thá»±c hiá»‡n buá»•i há»c hiá»‡u quáº£ vá»›i sá»± há»— trá»£ cá»§a AI." />
+  <meta name="description" content="Bài giảng đào tạo giảng viên nội bộ PVEP: thiết kế và thực hiện buổi học hiệu quả với sự hỗ trợ của AI." />
   <meta name="theme-color" content="#062c52" />
-  <title>ÄÃ o táº¡o Giáº£ng viÃªn Ná»™i bá»™ PVEP</title>
+  <title>Đào tạo Giảng viên Nội bộ PVEP</title>
   <style>
     :root {
       --navy: #041c35;
@@ -183,7 +183,7 @@
 
     .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; align-items: center; }
     .flow-item { position: relative; display: grid; align-content: center; min-height: 205px; padding: 22px; border-radius: 22px; background: white; border: 1px solid #d9ebf3; box-shadow: 0 12px 34px rgba(4,44,82,.08); }
-    .flow-item:not(:last-child)::after { content: "â€º"; position: absolute; right: -19px; top: 50%; z-index: 2; transform: translateY(-50%); color: var(--orange); font-size: 3rem; font-weight: 900; }
+    .flow-item:not(:last-child)::after { content: "›"; position: absolute; right: -19px; top: 50%; z-index: 2; transform: translateY(-50%); color: var(--orange); font-size: 3rem; font-weight: 900; }
     .flow-item .stepno { color: var(--cyan); font-weight: 900; letter-spacing: .1em; }
     .flow-item p { margin: 0; font-size: clamp(.86rem, 1.1vw, 1.05rem); }
 
@@ -214,9 +214,9 @@
     .check-item {
       min-height: 110px; padding: 17px; border: 1px solid #c7dfe9; border-radius: 18px; color: var(--ink); background: white; text-align: left; cursor: pointer; transition: .2s ease;
     }
-    .check-item::before { content: "â—‹"; display: block; margin-bottom: 8px; color: var(--blue); font-size: 1.5rem; line-height: 1; }
+    .check-item::before { content: "○"; display: block; margin-bottom: 8px; color: var(--blue); font-size: 1.5rem; line-height: 1; }
     .check-item.done { color: white; border-color: var(--success); background: var(--navy-2); transform: translateY(-2px); }
-    .check-item.done::before { content: "âœ“"; color: #60e7bb; }
+    .check-item.done::before { content: "✓"; color: #60e7bb; }
     .check-status { margin-top: 16px; color: var(--blue); font-weight: 800; }
 
     .builder { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
@@ -320,288 +320,288 @@
 <body>
   <main class="deck" id="deck" aria-live="polite">
 
-    <section class="slide cover current" data-title="Má»Ÿ Ä‘áº§u" data-section="PVEP Learning Lab" aria-hidden="false">
+    <section class="slide cover current" data-title="Mở đầu" data-section="PVEP Learning Lab" aria-hidden="false">
       <div class="cover-photo" aria-hidden="true"></div><div class="cover-overlay" aria-hidden="true"></div>
       <div class="cover-content">
-        <div class="eyebrow">ÄÃ o táº¡o giáº£ng viÃªn ná»™i bá»™ PVEP</div>
-        <h1>Thiáº¿t káº¿ buá»•i há»c <span class="accent">cÃ³ tÃ¡c Ä‘á»™ng</span></h1>
-        <p class="lead">Biáº¿n kinh nghiá»‡m thÃ nh má»™t hÃ nh trÃ¬nh há»c rÃµ rÃ ng, cÃ³ tÆ°Æ¡ng tÃ¡c vÃ  cÃ³ thá»ƒ Ã¡p dá»¥ng â€” vá»›i sá»± há»— trá»£ cÃ³ trÃ¡ch nhiá»‡m cá»§a AI.</p>
-        <div class="cover-meta"><span class="tag">03 giá»</span><span class="tag">20â€“30 há»c viÃªn</span><span class="tag">Thá»±c hÃ nh trá»ng tÃ¢m</span></div>
+        <div class="eyebrow">Đào tạo giảng viên nội bộ PVEP</div>
+        <h1>Thiết kế buổi học <span class="accent">có tác động</span></h1>
+        <p class="lead">Biến kinh nghiệm thành một hành trình học rõ ràng, có tương tác và có thể áp dụng — với sự hỗ trợ có trách nhiệm của AI.</p>
+        <div class="cover-meta"><span class="tag">03 giờ</span><span class="tag">20–30 học viên</span><span class="tag">Thực hành trọng tâm</span></div>
       </div>
-      <div class="cover-credit">áº¢nh: <a href="https://commons.wikimedia.org/wiki/File:Marco_Polo_at_Dusk.jpg" target="_blank" rel="noreferrer">GuavaTrain / Wikimedia Commons â€” CC0</a></div>
-      <aside class="speaker-notes"><p>Má»Ÿ báº±ng cÃ¢u há»i: â€œMá»™t buá»•i há»c ná»™i bá»™ Ä‘Ã¡ng nhá»› nháº¥t cá»§a anh/chá»‹ Ä‘Ã£ giÃºp anh/chá»‹ lÃ m Ä‘Æ°á»£c Ä‘iá»u gÃ¬ khÃ¡c Ä‘i?â€ Má»i 2â€“3 cÃ¢u tráº£ lá»i ngáº¯n.</p></aside>
+      <div class="cover-credit">Ảnh: <a href="https://commons.wikimedia.org/wiki/File:Marco_Polo_at_Dusk.jpg" target="_blank" rel="noreferrer">GuavaTrain / Wikimedia Commons — CC0</a></div>
+      <aside class="speaker-notes"><p>Mở bằng câu hỏi: “Một buổi học nội bộ đáng nhớ nhất của anh/chị đã giúp anh/chị làm được điều gì khác đi?” Mời 2–3 câu trả lời ngắn.</p></aside>
     </section>
 
-    <section class="slide dark" data-title="HÃ nh trÃ¬nh 3 giá»" data-section="Khá»Ÿi Ä‘á»™ng" aria-hidden="true">
-      <header><div class="eyebrow">HÃ nh trÃ¬nh 3 giá»</div><h2>Tá»« kinh nghiá»‡m â†’ hÃ nh Ä‘á»™ng</h2></header>
+    <section class="slide dark" data-title="Hành trình 3 giờ" data-section="Khởi động" aria-hidden="true">
+      <header><div class="eyebrow">Hành trình 3 giờ</div><h2>Từ kinh nghiệm → hành động</h2></header>
       <div class="content timeline">
-        <div class="step"><strong>Má»Ÿ khÃ³a</strong>Káº¿t ná»‘i ká»³ vá»ng<b>10â€²</b></div>
-        <div class="step"><strong>01</strong>Chá»n chá»§ Ä‘á»<b>20â€²</b></div>
-        <div class="step"><strong>02</strong>Chuáº©n bá»‹ phÃ¹ há»£p<b>25â€²</b></div>
-        <div class="step"><strong>03</strong>XÃ¢y máº¡ch ná»™i dung<b>35â€²</b></div>
-        <div class="step break"><strong>Náº¡p nÄƒng lÆ°á»£ng</strong>Nghá»‰<b>10â€²</b></div>
-        <div class="step"><strong>04â€“05</strong>AI, tÆ°Æ¡ng tÃ¡c & Ä‘á»©ng lá»›p<b>75â€²</b></div>
+        <div class="step"><strong>Mở khóa</strong>Kết nối kỳ vọng<b>10′</b></div>
+        <div class="step"><strong>01</strong>Chọn chủ đề<b>20′</b></div>
+        <div class="step"><strong>02</strong>Chuẩn bị phù hợp<b>25′</b></div>
+        <div class="step"><strong>03</strong>Xây mạch nội dung<b>35′</b></div>
+        <div class="step break"><strong>Nạp năng lượng</strong>Nghỉ<b>10′</b></div>
+        <div class="step"><strong>04–05</strong>AI, tương tác & đứng lớp<b>75′</b></div>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Há»c Ä‘á»ƒ lÃ m Ä‘Æ°á»£c</span></footer>
-      <aside class="speaker-notes"><p>Cho ngÆ°á»i há»c nhÃ¬n toÃ n bá»™ nhá»‹p há»c. Nháº¥n máº¡nh: má»—i pháº§n Ä‘á»u táº¡o ra má»™t sáº£n pháº©m nhá», cuá»‘i buá»•i ghÃ©p thÃ nh báº£n thiáº¿t káº¿ buá»•i há»c.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Học để làm được</span></footer>
+      <aside class="speaker-notes"><p>Cho người học nhìn toàn bộ nhịp học. Nhấn mạnh: mỗi phần đều tạo ra một sản phẩm nhỏ, cuối buổi ghép thành bản thiết kế buổi học.</p></aside>
     </section>
 
-    <section class="slide orange-wash" data-title="ÄÃ­ch Ä‘áº¿n" data-section="Khá»Ÿi Ä‘á»™ng" aria-hidden="true">
-      <header><div class="eyebrow">ÄÃ­ch Ä‘áº¿n</div><h2>Sau buá»•i há»c, báº¡n cÃ³ thá»ƒâ€¦</h2></header>
+    <section class="slide orange-wash" data-title="Đích đến" data-section="Khởi động" aria-hidden="true">
+      <header><div class="eyebrow">Đích đến</div><h2>Sau buổi học, bạn có thể…</h2></header>
       <div class="content grid-3">
-        <article class="card orange"><span class="big-number">01</span><h3>Chá»n Ä‘Ãºng</h3><p>Thu háº¹p má»™t chá»§ Ä‘á» thiáº¿t thá»±c vÃ  mÃ´ táº£ káº¿t quáº£ ngÆ°á»i há»c cáº§n Ä‘áº¡t.</p></article>
-        <article class="card"><span class="big-number">02</span><h3>Thiáº¿t káº¿ rÃµ</h3><p>Sáº¯p xáº¿p kiáº¿n thá»©c thÃ nh máº¡ch bÃ i vÃ  cÃ¡c khá»‘i há»c 10â€“15 phÃºt.</p></article>
-        <article class="card orange"><span class="big-number">03</span><h3>Dáº«n dáº¯t cÃ³ há»“n</h3><p>Táº¡o tÆ°Æ¡ng tÃ¡c, Ä‘áº·t cÃ¢u há»i vÃ  dÃ¹ng AI Ä‘Ãºng vai trÃ², an toÃ n.</p></article>
+        <article class="card orange"><span class="big-number">01</span><h3>Chọn đúng</h3><p>Thu hẹp một chủ đề thiết thực và mô tả kết quả người học cần đạt.</p></article>
+        <article class="card"><span class="big-number">02</span><h3>Thiết kế rõ</h3><p>Sắp xếp kiến thức thành mạch bài và các khối học 10–15 phút.</p></article>
+        <article class="card orange"><span class="big-number">03</span><h3>Dẫn dắt có hồn</h3><p>Tạo tương tác, đặt câu hỏi và dùng AI đúng vai trò, an toàn.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>3 nÄƒng lá»±c cá»‘t lÃµi</span></footer>
-      <aside class="speaker-notes"><p>YÃªu cáº§u ngÆ°á»i há»c chá»n má»™t nÄƒng lá»±c há» muá»‘n cáº£i thiá»‡n nháº¥t. CÃ³ thá»ƒ bÃ¬nh chá»n báº±ng giÆ¡ tay.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>3 năng lực cốt lõi</span></footer>
+      <aside class="speaker-notes"><p>Yêu cầu người học chọn một năng lực họ muốn cải thiện nhất. Có thể bình chọn bằng giơ tay.</p></aside>
     </section>
 
-    <section class="slide" data-title="SÃ¡u cÃ¢u há»i Ä‘á»‹nh vá»‹" data-section="01 Â· Chá»n chá»§ Ä‘á»" aria-hidden="true">
-      <header><div class="eyebrow">Báº¯t Ä‘áº§u tá»« giÃ¡ trá»‹</div><h2>6 cÃ¢u há»i Ä‘á»ƒ chá»n chá»§ Ä‘á» Ä‘Ã¡ng dáº¡y</h2></header>
+    <section class="slide" data-title="Sáu câu hỏi định vị" data-section="01 · Chọn chủ đề" aria-hidden="true">
+      <header><div class="eyebrow">Bắt đầu từ giá trị</div><h2>6 câu hỏi để chọn chủ đề đáng dạy</h2></header>
       <div class="content grid-6">
-        <article class="card numbered"><span class="num">1</span><h3>Tháº¿ máº¡nh?</h3><p>Kinh nghiá»‡m Ä‘Ã£ lÃ m nhiá»u láº§n hoáº·c bÃ i há»c Ä‘Ã£ tráº£ giÃ¡.</p></article>
-        <article class="card numbered orange"><span class="num">2</span><h3>Chia sáº» gÃ¬?</h3><p>Má»™t cÃ¢u, má»™t chá»§ Ä‘á» â€” khÃ´ng gom má»i Ä‘iá»u mÃ¬nh biáº¿t.</p></article>
-        <article class="card numbered"><span class="num">3</span><h3>Giáº£i quyáº¿t gÃ¬?</h3><p>Lá»—i láº·p láº¡i, lÃ£ng phÃ­, cháº¥t lÆ°á»£ng hay quyáº¿t Ä‘á»‹nh khÃ³.</p></article>
-        <article class="card numbered orange"><span class="num">4</span><h3>LÃ m Ä‘Æ°á»£c gÃ¬?</h3><p>DÃ¹ng Ä‘á»™ng tá»« quan sÃ¡t Ä‘Æ°á»£c: chá»n, phÃ¢n tÃ­ch, thiáº¿t káº¿â€¦</p></article>
-        <article class="card numbered"><span class="num">5</span><h3>Dáº¡y cÃ¡ch nÃ o?</h3><p>Minh há»a, tÃ¬nh huá»‘ng, hÆ°á»›ng dáº«n hay thá»±c hÃ nh.</p></article>
-        <article class="card numbered orange"><span class="num">6</span><h3>Tham gia ra sao?</h3><p>BÃ¬nh chá»n, trao Ä‘á»•i, giáº£i tÃ¬nh huá»‘ng hoáº·c pháº£n há»“i.</p></article>
+        <article class="card numbered"><span class="num">1</span><h3>Thế mạnh?</h3><p>Kinh nghiệm đã làm nhiều lần hoặc bài học đã trả giá.</p></article>
+        <article class="card numbered orange"><span class="num">2</span><h3>Chia sẻ gì?</h3><p>Một câu, một chủ đề — không gom mọi điều mình biết.</p></article>
+        <article class="card numbered"><span class="num">3</span><h3>Giải quyết gì?</h3><p>Lỗi lặp lại, lãng phí, chất lượng hay quyết định khó.</p></article>
+        <article class="card numbered orange"><span class="num">4</span><h3>Làm được gì?</h3><p>Dùng động từ quan sát được: chọn, phân tích, thiết kế…</p></article>
+        <article class="card numbered"><span class="num">5</span><h3>Dạy cách nào?</h3><p>Minh họa, tình huống, hướng dẫn hay thực hành.</p></article>
+        <article class="card numbered orange"><span class="num">6</span><h3>Tham gia ra sao?</h3><p>Bình chọn, trao đổi, giải tình huống hoặc phản hồi.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Chá»§ Ä‘á» tá»‘t báº¯t Ä‘áº§u báº±ng nhu cáº§u tháº­t</span></footer>
-      <aside class="speaker-notes"><p>Cho há»c viÃªn 60 giÃ¢y nghÄ© vá» má»™t kinh nghiá»‡m há» Ä‘ang muá»‘n chia sáº». Äi nhanh qua sÃ¡u cÃ¢u há»i, khÃ´ng yÃªu cáº§u tráº£ lá»i hoÃ n chá»‰nh ngay.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Chủ đề tốt bắt đầu bằng nhu cầu thật</span></footer>
+      <aside class="speaker-notes"><p>Cho học viên 60 giây nghĩ về một kinh nghiệm họ đang muốn chia sẻ. Đi nhanh qua sáu câu hỏi, không yêu cầu trả lời hoàn chỉnh ngay.</p></aside>
     </section>
 
-    <section class="slide dark" data-title="Thu háº¹p pháº¡m vi" data-section="01 Â· Chá»n chá»§ Ä‘á»" aria-hidden="true">
-      <header><div class="eyebrow">Thu háº¹p Ä‘á»ƒ táº¡o tÃ¡c Ä‘á»™ng</div><h2>Äiá»u tÃ´i biáº¿t â‰  Ä‘iá»u ngÆ°á»i há»c cáº§n</h2></header>
+    <section class="slide dark" data-title="Thu hẹp phạm vi" data-section="01 · Chọn chủ đề" aria-hidden="true">
+      <header><div class="eyebrow">Thu hẹp để tạo tác động</div><h2>Điều tôi biết ≠ điều người học cần</h2></header>
       <div class="content split-visual">
-        <div class="scope-visual"><div class="scope-circle wide">Äiá»u tÃ´i biáº¿t<br><span class="small">rá»™ng Â· nhiá»u chi tiáº¿t Â· dá»… dÃ n tráº£i</span></div><div class="scope-circle focus">Äiá»u cáº§n há»c<br><span class="small">má»™t viá»‡c Â· má»™t thay Ä‘á»•i</span></div></div>
+        <div class="scope-visual"><div class="scope-circle wide">Điều tôi biết<br><span class="small">rộng · nhiều chi tiết · dễ dàn trải</span></div><div class="scope-circle focus">Điều cần học<br><span class="small">một việc · một thay đổi</span></div></div>
         <div>
-          <p class="lead">Äá»«ng dáº¡y â€œtoÃ n bá»™ chá»§ Ä‘á»â€. HÃ£y dáº¡y Ä‘Ãºng pháº§n giÃºp ngÆ°á»i há»c hoÃ n thÃ nh má»™t nhiá»‡m vá»¥ cá»¥ thá»ƒ.</p>
-          <div class="card orange"><h3>BÃ i kiá»ƒm tra má»™t cÃ¢u</h3><p>Náº¿u chÆ°a mÃ´ táº£ Ä‘Æ°á»£c <strong>ngÆ°á»i há»c sáº½ lÃ m Ä‘Æ°á»£c gÃ¬</strong>, chá»§ Ä‘á» chÆ°a sáºµn sÃ ng Ä‘á»ƒ phÃ¡t triá»ƒn thÃ nh bÃ i giáº£ng.</p></div>
+          <p class="lead">Đừng dạy “toàn bộ chủ đề”. Hãy dạy đúng phần giúp người học hoàn thành một nhiệm vụ cụ thể.</p>
+          <div class="card orange"><h3>Bài kiểm tra một câu</h3><p>Nếu chưa mô tả được <strong>người học sẽ làm được gì</strong>, chủ đề chưa sẵn sàng để phát triển thành bài giảng.</p></div>
         </div>
       </div>
       <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Less content. More change.</span></footer>
-      <aside class="speaker-notes"><p>Cho vÃ­ dá»¥ Ä‘á»‘i chiáº¿u: â€œQuáº£n trá»‹ rá»§i roâ€ lÃ  quÃ¡ rá»™ng; â€œNháº­n diá»‡n 3 tÃ­n hiá»‡u rá»§i ro trong bÆ°á»›c phÃª duyá»‡t Xâ€ cÃ³ thá»ƒ dáº¡y vÃ  kiá»ƒm tra Ä‘Æ°á»£c.</p></aside>
+      <aside class="speaker-notes"><p>Cho ví dụ đối chiếu: “Quản trị rủi ro” là quá rộng; “Nhận diện 3 tín hiệu rủi ro trong bước phê duyệt X” có thể dạy và kiểm tra được.</p></aside>
     </section>
 
-    <section class="slide orange-wash" data-title="Phiáº¿u chá»n chá»§ Ä‘á»" data-section="01 Â· Thá»±c hÃ nh" aria-hidden="true">
-      <header><div class="eyebrow">Hoáº¡t Ä‘á»™ng 8 phÃºt</div><h2>Viáº¿t lá»i há»©a cá»§a buá»•i há»c</h2></header>
+    <section class="slide orange-wash" data-title="Phiếu chọn chủ đề" data-section="01 · Thực hành" aria-hidden="true">
+      <header><div class="eyebrow">Hoạt động 8 phút</div><h2>Viết lời hứa của buổi học</h2></header>
       <div class="content">
-        <div class="action-box"><div><h3>TÃ´i sáº½ giÃºpâ€¦</h3><p>Äiá»n bá»‘n Ã´. Sau Ä‘Ã³ trao Ä‘á»•i theo cáº·p vÃ  thu háº¹p cÃ¢u chá»¯.</p></div><div class="time-chip"><strong>08:00</strong><button class="tag" data-timer="480" type="button">Báº¯t Ä‘áº§u</button></div></div>
+        <div class="action-box"><div><h3>Tôi sẽ giúp…</h3><p>Điền bốn ô. Sau đó trao đổi theo cặp và thu hẹp câu chữ.</p></div><div class="time-chip"><strong>08:00</strong><button class="tag" data-timer="480" type="button">Bắt đầu</button></div></div>
         <div class="activity-inputs" id="topicInputs">
-          <input aria-label="NhÃ³m ngÆ°á»i há»c" placeholder="[nhÃ³m ngÆ°á»i há»c]" />
-          <input aria-label="HÃ nh Ä‘á»™ng" placeholder="[thá»±c hiá»‡n hÃ nh Ä‘á»™ng]" />
-          <input aria-label="Bá»‘i cáº£nh" placeholder="[trong bá»‘i cáº£nh]" />
-          <input aria-label="Ná»™i dung cá»‘t lÃµi" placeholder="[ná»™i dung cá»‘t lÃµi]" />
+          <input aria-label="Nhóm người học" placeholder="[nhóm người học]" />
+          <input aria-label="Hành động" placeholder="[thực hiện hành động]" />
+          <input aria-label="Bối cảnh" placeholder="[trong bối cảnh]" />
+          <input aria-label="Nội dung cốt lõi" placeholder="[nội dung cốt lõi]" />
         </div>
-        <div class="sentence-output" id="topicSentence">TÃ´i sáº½ giÃºp â€¦ thá»±c hiá»‡n â€¦ trong â€¦ báº±ng cÃ¡ch chia sáº» â€¦</div>
+        <div class="sentence-output" id="topicSentence">Tôi sẽ giúp … thực hiện … trong … bằng cách chia sẻ …</div>
       </div>
-      <footer class="footerline"><span>3â€² viáº¿t Â· 3â€² trao Ä‘á»•i Â· 2â€² viáº¿t láº¡i</span><span>Sáº£n pháº©m: 1 cÃ¢u chá»§ Ä‘á» rÃµ rÃ ng</span></footer>
-      <aside class="speaker-notes"><p>Nháº¯c há»c viÃªn khÃ´ng viáº¿t tÃªn mÃ´n há»c; hÃ£y viáº¿t sá»± thay Ä‘á»•i mong muá»‘n á»Ÿ ngÆ°á»i há»c. Sau trao Ä‘á»•i cáº·p, má»i 2 ngÆ°á»i Ä‘á»c cÃ¢u trÆ°á»›c vÃ  sau khi sá»­a.</p></aside>
+      <footer class="footerline"><span>3′ viết · 3′ trao đổi · 2′ viết lại</span><span>Sản phẩm: 1 câu chủ đề rõ ràng</span></footer>
+      <aside class="speaker-notes"><p>Nhắc học viên không viết tên môn học; hãy viết sự thay đổi mong muốn ở người học. Sau trao đổi cặp, mời 2 người đọc câu trước và sau khi sửa.</p></aside>
     </section>
 
-    <section class="slide" data-title="ChÃ¢n dung ngÆ°á»i há»c" data-section="02 Â· Chuáº©n bá»‹" aria-hidden="true">
-      <header><div class="eyebrow">Thiáº¿t káº¿ tá»« ngÆ°á»i há»c</div><h2>4 cÃ¢u há»i táº¡o chÃ¢n dung Ä‘á»§ dÃ¹ng</h2></header>
+    <section class="slide" data-title="Chân dung người học" data-section="02 · Chuẩn bị" aria-hidden="true">
+      <header><div class="eyebrow">Thiết kế từ người học</div><h2>4 câu hỏi tạo chân dung đủ dùng</h2></header>
       <div class="content grid-2">
-        <article class="card"><h3>ðŸ‘¥ Há» lÃ  ai?</h3><p>Vai trÃ², kinh nghiá»‡m, má»©c hiá»ƒu biáº¿t ná»n vÃ  lÃ½ do tham gia.</p></article>
-        <article class="card orange"><h3>ðŸ§  Há» Ä‘Ã£ biáº¿t gÃ¬?</h3><p>Äiá»u cÃ³ thá»ƒ lÆ°á»£c bá»›t; thuáº­t ngá»¯ nÃ o cáº§n Ä‘Æ°á»£c giáº£i thÃ­ch.</p></article>
-        <article class="card orange"><h3>ðŸ§© Há» Ä‘ang vÆ°á»›ng gÃ¬?</h3><p>Nhiá»‡m vá»¥ khÃ³, lá»—i láº·p láº¡i, quyáº¿t Ä‘á»‹nh lÃ m máº¥t thá»i gian.</p></article>
-        <article class="card"><h3>ðŸŽ¯ Há» sáº½ dÃ¹ng á»Ÿ Ä‘Ã¢u?</h3><p>CÃ´ng viá»‡c hoáº·c tÃ¬nh huá»‘ng cho phÃ©p Ã¡p dá»¥ng ngay sau buá»•i há»c.</p></article>
+        <article class="card"><h3>👥 Họ là ai?</h3><p>Vai trò, kinh nghiệm, mức hiểu biết nền và lý do tham gia.</p></article>
+        <article class="card orange"><h3>🧠 Họ đã biết gì?</h3><p>Điều có thể lược bớt; thuật ngữ nào cần được giải thích.</p></article>
+        <article class="card orange"><h3>🧩 Họ đang vướng gì?</h3><p>Nhiệm vụ khó, lỗi lặp lại, quyết định làm mất thời gian.</p></article>
+        <article class="card"><h3>🎯 Họ sẽ dùng ở đâu?</h3><p>Công việc hoặc tình huống cho phép áp dụng ngay sau buổi học.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Äá»§ Ä‘á»ƒ quyáº¿t Ä‘á»‹nh â€” khÃ´ng cáº§n há»“ sÆ¡ dÃ i</span></footer>
-      <aside class="speaker-notes"><p>Gá»£i Ã½ kháº£o sÃ¡t trÆ°á»›c lá»›p báº±ng ba cÃ¢u: cÃ´ng viá»‡c hiá»‡n táº¡i, Ä‘iá»u khÃ³ nháº¥t, cÃ¡ch lÃ m muá»‘n mang vá».</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Đủ để quyết định — không cần hồ sơ dài</span></footer>
+      <aside class="speaker-notes"><p>Gợi ý khảo sát trước lớp bằng ba câu: công việc hiện tại, điều khó nhất, cách làm muốn mang về.</p></aside>
     </section>
 
-    <section class="slide dark" data-title="Má»¥c tiÃªu vÃ  nguá»“n" data-section="02 Â· Chuáº©n bá»‹" aria-hidden="true">
-      <header><div class="eyebrow">Hai má» neo</div><h2>Má»¥c tiÃªu rÃµ. Nguá»“n Ä‘Ã¡ng tin.</h2></header>
+    <section class="slide dark" data-title="Mục tiêu và nguồn" data-section="02 · Chuẩn bị" aria-hidden="true">
+      <header><div class="eyebrow">Hai mỏ neo</div><h2>Mục tiêu rõ. Nguồn đáng tin.</h2></header>
       <div class="content grid-2">
-        <article class="card orange"><span class="tag">Má»¤C TIÃŠU</span><h3 style="margin-top:16px">Sau buá»•i há»c, ngÆ°á»i há»c cÃ³ thá»ƒâ€¦</h3><p><strong>[hÃ nh Ä‘á»™ng]</strong> vá»›i <strong>[tÃ¬nh huá»‘ng]</strong> theo <strong>[tiÃªu chÃ­]</strong>.</p><p class="small muted">TrÃ¡nh: hiá»ƒu, náº¯m, biáº¿t. Æ¯u tiÃªn: chá»n, phÃ¢n tÃ­ch, kiá»ƒm tra, thiáº¿t káº¿, xá»­ lÃ½.</p></article>
-        <article class="card"><span class="tag">NGUá»’N</span><h3 style="margin-top:16px">Ba lá»›p kiá»ƒm chá»©ng</h3><p>â‘  TÃ i liá»‡u gá»‘c<br>â‘¡ NgÆ°á»i kiá»ƒm tra chuyÃªn mÃ´n<br>â‘¢ VÃ­ dá»¥ gáº§n vá»›i cÃ´ng viá»‡c</p><p class="small muted">KhÃ´ng dÃ¹ng dá»¯ liá»‡u chÆ°a xÃ¡c minh.</p></article>
+        <article class="card orange"><span class="tag">MỤC TIÊU</span><h3 style="margin-top:16px">Sau buổi học, người học có thể…</h3><p><strong>[hành động]</strong> với <strong>[tình huống]</strong> theo <strong>[tiêu chí]</strong>.</p><p class="small muted">Tránh: hiểu, nắm, biết. Ưu tiên: chọn, phân tích, kiểm tra, thiết kế, xử lý.</p></article>
+        <article class="card"><span class="tag">NGUỒN</span><h3 style="margin-top:16px">Ba lớp kiểm chứng</h3><p>① Tài liệu gốc<br>② Người kiểm tra chuyên môn<br>③ Ví dụ gần với công việc</p><p class="small muted">Không dùng dữ liệu chưa xác minh.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>AI há»— trá»£ nhÃ¡p â€” ngÆ°á»i dáº¡y chá»‹u trÃ¡ch nhiá»‡m</span></footer>
-      <aside class="speaker-notes"><p>Má»i há»c viÃªn Ä‘á»•i má»™t má»¥c tiÃªu dÃ¹ng Ä‘á»™ng tá»« â€œhiá»ƒuâ€ thÃ nh hÃ nh Ä‘á»™ng cÃ³ thá»ƒ quan sÃ¡t. Nháº¥n máº¡nh nguá»“n ná»™i bá»™ cáº§n Ä‘Ãºng tháº©m quyá»n sá»­ dá»¥ng.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>AI hỗ trợ nháp — người dạy chịu trách nhiệm</span></footer>
+      <aside class="speaker-notes"><p>Mời học viên đổi một mục tiêu dùng động từ “hiểu” thành hành động có thể quan sát. Nhấn mạnh nguồn nội bộ cần đúng thẩm quyền sử dụng.</p></aside>
     </section>
 
-    <section class="slide" data-title="SÃ¡u viá»‡c chuáº©n bá»‹" data-section="02 Â· Chuáº©n bá»‹" aria-hidden="true">
-      <header><div class="eyebrow">Báº£n chuáº©n bá»‹ má»™t trang</div><h2>6 quyáº¿t Ä‘á»‹nh trÆ°á»›c khi lÃ m slide</h2></header>
+    <section class="slide" data-title="Sáu việc chuẩn bị" data-section="02 · Chuẩn bị" aria-hidden="true">
+      <header><div class="eyebrow">Bản chuẩn bị một trang</div><h2>6 quyết định trước khi làm slide</h2></header>
       <div class="content grid-6">
-        <article class="card numbered"><span class="num">1</span><h3>Má»¥c tiÃªu</h3><p>Má»™t hÃ nh Ä‘á»™ng, bá»‘i cáº£nh vÃ  tiÃªu chÃ­.</p></article>
-        <article class="card numbered orange"><span class="num">2</span><h3>Nguá»“n & vÃ­ dá»¥</h3><p>TÃ i liá»‡u gá»‘c vÃ  vÃ­ dá»¥ gáº§n viá»‡c tháº­t.</p></article>
-        <article class="card numbered"><span class="num">3</span><h3>Pháº¡m vi</h3><p>Báº¯t buá»™c Â· nÃªn biáº¿t Â· tham kháº£o.</p></article>
-        <article class="card numbered orange"><span class="num">4</span><h3>TÆ°Æ¡ng tÃ¡c</h3><p>Há»i, minh há»a, tÃ¬nh huá»‘ng, thá»±c hÃ nh.</p></article>
-        <article class="card numbered"><span class="num">5</span><h3>Kiá»ƒm tra</h3><p>CÃ¢u há»i, quyáº¿t Ä‘á»‹nh hoáº·c sáº£n pháº©m.</p></article>
-        <article class="card numbered orange"><span class="num">6</span><h3>Dá»± phÃ²ng</h3><p>Thiáº¿t bá»‹, máº¡ng vÃ  phÆ°Æ¡ng Ã¡n offline.</p></article>
+        <article class="card numbered"><span class="num">1</span><h3>Mục tiêu</h3><p>Một hành động, bối cảnh và tiêu chí.</p></article>
+        <article class="card numbered orange"><span class="num">2</span><h3>Nguồn & ví dụ</h3><p>Tài liệu gốc và ví dụ gần việc thật.</p></article>
+        <article class="card numbered"><span class="num">3</span><h3>Phạm vi</h3><p>Bắt buộc · nên biết · tham khảo.</p></article>
+        <article class="card numbered orange"><span class="num">4</span><h3>Tương tác</h3><p>Hỏi, minh họa, tình huống, thực hành.</p></article>
+        <article class="card numbered"><span class="num">5</span><h3>Kiểm tra</h3><p>Câu hỏi, quyết định hoặc sản phẩm.</p></article>
+        <article class="card numbered orange"><span class="num">6</span><h3>Dự phòng</h3><p>Thiết bị, mạng và phương án offline.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Chuáº©n bá»‹ tá»‘t lÃ m giáº£m á»©ng biáº¿n khÃ´ng cáº§n thiáº¿t</span></footer>
-      <aside class="speaker-notes"><p>Nháº¥n máº¡nh phÃ¢n loáº¡i pháº¡m vi: chá»‰ pháº§n â€œbáº¯t buá»™câ€ Ä‘Æ°á»£c Æ°u tiÃªn trÃªn lá»›p. â€œNÃªn biáº¿tâ€ cÃ³ thá»ƒ Ä‘á»ƒ tÃ i liá»‡u Ä‘á»c thÃªm.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Chuẩn bị tốt làm giảm ứng biến không cần thiết</span></footer>
+      <aside class="speaker-notes"><p>Nhấn mạnh phân loại phạm vi: chỉ phần “bắt buộc” được ưu tiên trên lớp. “Nên biết” có thể để tài liệu đọc thêm.</p></aside>
     </section>
 
-    <section class="slide orange-wash" data-title="Kiá»ƒm tra Ä‘á»™ sáºµn sÃ ng" data-section="02 Â· TÆ°Æ¡ng tÃ¡c" aria-hidden="true">
-      <header><div class="eyebrow">Cháº¡m Ä‘á»ƒ kiá»ƒm tra</div><h2>Buá»•i há»c cá»§a báº¡n Ä‘Ã£ sáºµn sÃ ng?</h2></header>
+    <section class="slide orange-wash" data-title="Kiểm tra độ sẵn sàng" data-section="02 · Tương tác" aria-hidden="true">
+      <header><div class="eyebrow">Chạm để kiểm tra</div><h2>Buổi học của bạn đã sẵn sàng?</h2></header>
       <div class="content">
         <div class="check-grid" id="readinessChecklist">
-          <button class="check-item" type="button">TÃ´i biáº¿t rÃµ ngÆ°á»i há»c</button>
-          <button class="check-item" type="button">Má»¥c tiÃªu quan sÃ¡t Ä‘Æ°á»£c</button>
-          <button class="check-item" type="button">Nguá»“n Ä‘Ã£ kiá»ƒm chá»©ng</button>
-          <button class="check-item" type="button">Pháº¡m vi Ä‘á»§ háº¹p</button>
-          <button class="check-item" type="button">CÃ³ cÃ¡ch kiá»ƒm tra</button>
-          <button class="check-item" type="button">CÃ³ phÆ°Æ¡ng Ã¡n dá»± phÃ²ng</button>
+          <button class="check-item" type="button">Tôi biết rõ người học</button>
+          <button class="check-item" type="button">Mục tiêu quan sát được</button>
+          <button class="check-item" type="button">Nguồn đã kiểm chứng</button>
+          <button class="check-item" type="button">Phạm vi đủ hẹp</button>
+          <button class="check-item" type="button">Có cách kiểm tra</button>
+          <button class="check-item" type="button">Có phương án dự phòng</button>
         </div>
-        <div class="check-status" id="checkStatus">0/6 quyáº¿t Ä‘á»‹nh Ä‘Ã£ rÃµ</div>
+        <div class="check-status" id="checkStatus">0/6 quyết định đã rõ</div>
       </div>
-      <footer class="footerline"><span>ÄÃ¡nh dáº¥u theo tÃ¬nh tráº¡ng thá»±c táº¿</span><span>Sáº£n pháº©m: báº£n chuáº©n bá»‹ má»™t trang</span></footer>
-      <aside class="speaker-notes"><p>Má»—i ngÆ°á»i tá»± Ä‘Ã¡nh dáº¥u. Sau Ä‘Ã³ ngÆ°á»i cÃ¹ng bÃ n Ä‘á»c báº£n chuáº©n bá»‹ vÃ  chá»‰ ra má»™t má»¥c cÃ²n chung chung hoáº·c thiáº¿u nguá»“n.</p></aside>
+      <footer class="footerline"><span>Đánh dấu theo tình trạng thực tế</span><span>Sản phẩm: bản chuẩn bị một trang</span></footer>
+      <aside class="speaker-notes"><p>Mỗi người tự đánh dấu. Sau đó người cùng bàn đọc bản chuẩn bị và chỉ ra một mục còn chung chung hoặc thiếu nguồn.</p></aside>
     </section>
 
-    <section class="slide" data-title="Khung nÄƒm bÆ°á»›c" data-section="03 Â· XÃ¢y ná»™i dung" aria-hidden="true">
-      <header><div class="eyebrow">Thiáº¿t káº¿ ngÆ°á»£c</div><h2>Khung 5 bÆ°á»›c xÃ¢y bÃ i</h2></header>
+    <section class="slide" data-title="Khung năm bước" data-section="03 · Xây nội dung" aria-hidden="true">
+      <header><div class="eyebrow">Thiết kế ngược</div><h2>Khung 5 bước xây bài</h2></header>
       <div class="content flow">
-        <article class="flow-item"><span class="stepno">01 Â· Káº¾T QUáº¢</span><h3>LÃ m Ä‘Æ°á»£c gÃ¬?</h3><p>Má»™t má»¥c tiÃªu báº±ng hÃ nh Ä‘á»™ng.</p></article>
-        <article class="flow-item"><span class="stepno">02 Â· Báº°NG CHá»¨NG</span><h3>NhÃ¬n vÃ o Ä‘Ã¢u?</h3><p>CÃ¢u tráº£ lá»i, quyáº¿t Ä‘á»‹nh, sáº£n pháº©m.</p></article>
-        <article class="flow-item"><span class="stepno">03 Â· Máº CH BÃ€I</span><h3>Äi theo thá»© tá»± nÃ o?</h3><p>Má»™t cáº¥u trÃºc dá»… hiá»ƒu.</p></article>
-        <article class="flow-item"><span class="stepno">04 Â· KHá»I Há»ŒC</span><h3>Nhá»› gÃ¬, lÃ m gÃ¬?</h3><p>CÃ¡c khá»‘i 10â€“15 phÃºt.</p></article>
-        <article class="flow-item"><span class="stepno">05 Â· ÃP Dá»¤NG</span><h3>DÃ¹ng á»Ÿ Ä‘Ã¢u?</h3><p>Má»™t bÆ°á»›c sau buá»•i há»c.</p></article>
+        <article class="flow-item"><span class="stepno">01 · KẾT QUẢ</span><h3>Làm được gì?</h3><p>Một mục tiêu bằng hành động.</p></article>
+        <article class="flow-item"><span class="stepno">02 · BẰNG CHỨNG</span><h3>Nhìn vào đâu?</h3><p>Câu trả lời, quyết định, sản phẩm.</p></article>
+        <article class="flow-item"><span class="stepno">03 · MẠCH BÀI</span><h3>Đi theo thứ tự nào?</h3><p>Một cấu trúc dễ hiểu.</p></article>
+        <article class="flow-item"><span class="stepno">04 · KHỐI HỌC</span><h3>Nhớ gì, làm gì?</h3><p>Các khối 10–15 phút.</p></article>
+        <article class="flow-item"><span class="stepno">05 · ÁP DỤNG</span><h3>Dùng ở đâu?</h3><p>Một bước sau buổi học.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Báº¯t Ä‘áº§u tá»« káº¿t quáº£, khÃ´ng báº¯t Ä‘áº§u tá»« slide</span></footer>
-      <aside class="speaker-notes"><p>Äi tá»« pháº£i sang trÃ¡i khi thiáº¿t káº¿: chá»‘t Ã¡p dá»¥ng vÃ  báº±ng chá»©ng trÆ°á»›c, sau Ä‘Ã³ má»›i chá»n ná»™i dung. Khi giáº£ng, trÃ¬nh bÃ y theo chiá»u trÃ¡i sang pháº£i.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Bắt đầu từ kết quả, không bắt đầu từ slide</span></footer>
+      <aside class="speaker-notes"><p>Đi từ phải sang trái khi thiết kế: chốt áp dụng và bằng chứng trước, sau đó mới chọn nội dung. Khi giảng, trình bày theo chiều trái sang phải.</p></aside>
     </section>
 
-    <section class="slide orange-wash" data-title="CÃ´ng thá»©c 1â€“3â€“1" data-section="03 Â· XÃ¢y ná»™i dung" aria-hidden="true">
-      <header><div class="eyebrow">Má»™t khá»‘i há»c 10â€“15 phÃºt</div><h2>CÃ´ng thá»©c <span class="accent">1â€“3â€“1</span></h2></header>
+    <section class="slide orange-wash" data-title="Công thức 1–3–1" data-section="03 · Xây nội dung" aria-hidden="true">
+      <header><div class="eyebrow">Một khối học 10–15 phút</div><h2>Công thức <span class="accent">1–3–1</span></h2></header>
       <div class="content formula">
-        <div class="token orange"><div><span class="big-number" style="color:white">1</span><h3>ThÃ´ng Ä‘iá»‡p</h3><span>Náº¿u chá»‰ nhá»› má»™t Ä‘iá»uâ€¦</span></div></div>
+        <div class="token orange"><div><span class="big-number" style="color:white">1</span><h3>Thông điệp</h3><span>Nếu chỉ nhớ một điều…</span></div></div>
         <span class="operator">+</span>
-        <div class="token"><div><span class="big-number" style="color:var(--sky)">3</span><h3>Ã há»— trá»£</h3><span>BÆ°á»›c Â· lÃ½ do Â· báº±ng chá»©ng</span></div></div>
+        <div class="token"><div><span class="big-number" style="color:var(--sky)">3</span><h3>Ý hỗ trợ</h3><span>Bước · lý do · bằng chứng</span></div></div>
         <span class="operator">+</span>
-        <div class="token orange"><div><span class="big-number" style="color:white">1</span><h3>Viá»‡c pháº£i lÃ m</h3><span>Tráº£ lá»i Â· chá»n Â· sá»­a Â· thá»­</span></div></div>
+        <div class="token orange"><div><span class="big-number" style="color:white">1</span><h3>Việc phải làm</h3><span>Trả lời · chọn · sửa · thử</span></div></div>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Má»™t nhá»‹p ngáº¯n, má»™t dáº¥u áº¥n rÃµ</span></footer>
-      <aside class="speaker-notes"><p>Cho vÃ­ dá»¥: thÃ´ng Ä‘iá»‡p â€œPháº£n há»“i táº­p trung vÃ o hÃ nh vi quan sÃ¡t Ä‘Æ°á»£câ€; ba Ã½ lÃ  mÃ´ táº£â€“tÃ¡c Ä‘á»™ngâ€“bÆ°á»›c tiáº¿p theo; viá»‡c lÃ m lÃ  sá»­a má»™t cÃ¢u pháº£n há»“i chung chung.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Một nhịp ngắn, một dấu ấn rõ</span></footer>
+      <aside class="speaker-notes"><p>Cho ví dụ: thông điệp “Phản hồi tập trung vào hành vi quan sát được”; ba ý là mô tả–tác động–bước tiếp theo; việc làm là sửa một câu phản hồi chung chung.</p></aside>
     </section>
 
-    <section class="slide" data-title="Bá»‘n máº¡ch bÃ i" data-section="03 Â· XÃ¢y ná»™i dung" aria-hidden="true">
-      <header><div class="eyebrow">Chá»n Ä‘Æ°á»ng Ä‘i</div><h2>4 máº¡ch bÃ i dá»… sá»­ dá»¥ng</h2></header>
+    <section class="slide" data-title="Bốn mạch bài" data-section="03 · Xây nội dung" aria-hidden="true">
+      <header><div class="eyebrow">Chọn đường đi</div><h2>4 mạch bài dễ sử dụng</h2></header>
       <div class="content grid-2">
-        <article class="card"><span class="tag">01</span><h3 style="margin-top:12px">Theo quy trÃ¬nh</h3><p>PhÃ¹ há»£p vá»›i thao tÃ¡c, cÃ´ng viá»‡c cÃ³ trÃ¬nh tá»± hoáº·c hÆ°á»›ng dáº«n cÃ´ng cá»¥.</p></article>
-        <article class="card orange"><span class="tag">02</span><h3 style="margin-top:12px">Váº¥n Ä‘á» â†’ cÃ¡ch xá»­ lÃ½</h3><p>Äi tá»« lá»—i, nguyÃªn nhÃ¢n, rá»§i ro Ä‘áº¿n phÆ°Æ¡ng Ã¡n kháº¯c phá»¥c.</p></article>
-        <article class="card orange"><span class="tag">03</span><h3 style="margin-top:12px">KhÃ¡i niá»‡m â†’ Ã¡p dá»¥ng</h3><p>Giá»›i thiá»‡u kiáº¿n thá»©c má»›i, minh há»a rá»“i cho ngÆ°á»i há»c thá»­ dÃ¹ng.</p></article>
-        <article class="card"><span class="tag">04</span><h3 style="margin-top:12px">TÃ¬nh huá»‘ng â†’ bÃ i há»c</h3><p>Äá»ƒ lá»›p phÃ¢n tÃ­ch trÆ°á»›c, sau Ä‘Ã³ ngÆ°á»i dáº¡y rÃºt ra nguyÃªn táº¯c.</p></article>
+        <article class="card"><span class="tag">01</span><h3 style="margin-top:12px">Theo quy trình</h3><p>Phù hợp với thao tác, công việc có trình tự hoặc hướng dẫn công cụ.</p></article>
+        <article class="card orange"><span class="tag">02</span><h3 style="margin-top:12px">Vấn đề → cách xử lý</h3><p>Đi từ lỗi, nguyên nhân, rủi ro đến phương án khắc phục.</p></article>
+        <article class="card orange"><span class="tag">03</span><h3 style="margin-top:12px">Khái niệm → áp dụng</h3><p>Giới thiệu kiến thức mới, minh họa rồi cho người học thử dùng.</p></article>
+        <article class="card"><span class="tag">04</span><h3 style="margin-top:12px">Tình huống → bài học</h3><p>Để lớp phân tích trước, sau đó người dạy rút ra nguyên tắc.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Máº¡ch bÃ i phá»¥c vá»¥ má»¥c tiÃªu, khÃ´ng pháº£i sá»Ÿ thÃ­ch</span></footer>
-      <aside class="speaker-notes"><p>Há»i nhanh: chá»§ Ä‘á» cá»§a tá»«ng ngÆ°á»i há»£p vá»›i máº¡ch nÃ o? Náº¿u cÃ³ nhiá»u Ä‘Ã¡p Ã¡n, yÃªu cáº§u giáº£i thÃ­ch dá»±a trÃªn loáº¡i nhiá»‡m vá»¥ ngÆ°á»i há»c pháº£i lÃ m.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Mạch bài phục vụ mục tiêu, không phải sở thích</span></footer>
+      <aside class="speaker-notes"><p>Hỏi nhanh: chủ đề của từng người hợp với mạch nào? Nếu có nhiều đáp án, yêu cầu giải thích dựa trên loại nhiệm vụ người học phải làm.</p></aside>
     </section>
 
-    <section class="slide orange-wash" data-title="XÃ¢y má»™t khá»‘i há»c" data-section="03 Â· Thá»±c hÃ nh" aria-hidden="true">
-      <header><div class="eyebrow">Hoáº¡t Ä‘á»™ng 15 phÃºt</div><h2>Dá»±ng khá»‘i há»c Ä‘áº§u tiÃªn</h2></header>
+    <section class="slide orange-wash" data-title="Xây một khối học" data-section="03 · Thực hành" aria-hidden="true">
+      <header><div class="eyebrow">Hoạt động 15 phút</div><h2>Dựng khối học đầu tiên</h2></header>
       <div class="content">
         <div class="builder">
-          <label>1 thÃ´ng Ä‘iá»‡p<textarea placeholder="Náº¿u chá»‰ nhá»› má»™t Ä‘iá»uâ€¦"></textarea></label>
-          <label>3 Ã½ há»— trá»£<textarea placeholder="1. â€¦&#10;2. â€¦&#10;3. â€¦"></textarea></label>
-          <label>1 viá»‡c pháº£i lÃ m<textarea placeholder="NgÆ°á»i há»c sáº½ tráº£ lá»i, lá»±a chá»n, sá»­a hay thá»±c hÃ nh gÃ¬?"></textarea></label>
+          <label>1 thông điệp<textarea placeholder="Nếu chỉ nhớ một điều…"></textarea></label>
+          <label>3 ý hỗ trợ<textarea placeholder="1. …&#10;2. …&#10;3. …"></textarea></label>
+          <label>1 việc phải làm<textarea placeholder="Người học sẽ trả lời, lựa chọn, sửa hay thực hành gì?"></textarea></label>
         </div>
-        <div class="action-box" style="margin-top:14px"><div><h3>Chá»‘t thÃªm hai quyáº¿t Ä‘á»‹nh</h3><p>Chá»n má»™t máº¡ch bÃ i vÃ  má»™t báº±ng chá»©ng cho tháº¥y ngÆ°á»i há»c lÃ m Ä‘Æ°á»£c.</p></div><div class="time-chip"><strong>15:00</strong><button class="tag" data-timer="900" type="button">Báº¯t Ä‘áº§u</button></div></div>
+        <div class="action-box" style="margin-top:14px"><div><h3>Chốt thêm hai quyết định</h3><p>Chọn một mạch bài và một bằng chứng cho thấy người học làm được.</p></div><div class="time-chip"><strong>15:00</strong><button class="tag" data-timer="900" type="button">Bắt đầu</button></div></div>
       </div>
-      <footer class="footerline"><span>NhÃ³m 2â€“3 ngÆ°á»i Â· 10â€² thiáº¿t káº¿ Â· 5â€² pháº£n há»“i</span><span>Sáº£n pháº©m: 1 khá»‘i 1â€“3â€“1</span></footer>
-      <aside class="speaker-notes"><p>Äá» nghá»‹ nhÃ³m dÃ¹ng chÃ­nh chá»§ Ä‘á» cá»§a má»™t thÃ nh viÃªn. Khi pháº£n há»“i, chá»‰ kiá»ƒm tra ba Ä‘iá»ƒm: má»¥c tiÃªu rÃµ, máº¡ch há»£p lÃ½, hoáº¡t Ä‘á»™ng táº¡o Ä‘Æ°á»£c báº±ng chá»©ng.</p></aside>
+      <footer class="footerline"><span>Nhóm 2–3 người · 10′ thiết kế · 5′ phản hồi</span><span>Sản phẩm: 1 khối 1–3–1</span></footer>
+      <aside class="speaker-notes"><p>Đề nghị nhóm dùng chính chủ đề của một thành viên. Khi phản hồi, chỉ kiểm tra ba điểm: mục tiêu rõ, mạch hợp lý, hoạt động tạo được bằng chứng.</p></aside>
     </section>
 
-    <section class="slide dark" data-title="AI Ä‘Ãºng vai" data-section="04 Â· AI há»— trá»£" aria-hidden="true">
-      <header><div class="eyebrow">AI lÃ  trá»£ lÃ½, khÃ´ng lÃ  ngÆ°á»i chá»‹u trÃ¡ch nhiá»‡m</div><h2>3 nguyÃªn táº¯c trÆ°á»›c khi má»Ÿ cÃ´ng cá»¥</h2></header>
+    <section class="slide dark" data-title="AI đúng vai" data-section="04 · AI hỗ trợ" aria-hidden="true">
+      <header><div class="eyebrow">AI là trợ lý, không là người chịu trách nhiệm</div><h2>3 nguyên tắc trước khi mở công cụ</h2></header>
       <div class="content grid-3">
-        <article class="card orange"><span class="big-number">01</span><h3>LÃ m rÃµ quan há»‡</h3><p>Chá»‰ trá»±c quan hÃ³a khi cáº§n tháº¥y thá»© tá»±, so sÃ¡nh, nguyÃªn nhÃ¢n, phÃ¢n cáº¥p hoáº·c lá»±a chá»n.</p></article>
-        <article class="card"><span class="big-number">02</span><h3>AI táº¡o báº£n nhÃ¡p</h3><p>NgÆ°á»i dáº¡y sá»­a ná»™i dung, thuáº­t ngá»¯, dá»¯ liá»‡u, Ä‘Ã¡p Ã¡n vÃ  má»©c Ä‘á»™ phÃ¹ há»£p.</p></article>
-        <article class="card orange"><span class="big-number">03</span><h3>Dá»¯ liá»‡u an toÃ n</h3><p>Chá»‰ dÃ¹ng dá»¯ liá»‡u giáº£ láº­p hoáº·c cÃ´ng khai; khÃ´ng táº£i dá»¯ liá»‡u máº­t hay chÆ°a Ä‘Æ°á»£c phÃ©p.</p></article>
+        <article class="card orange"><span class="big-number">01</span><h3>Làm rõ quan hệ</h3><p>Chỉ trực quan hóa khi cần thấy thứ tự, so sánh, nguyên nhân, phân cấp hoặc lựa chọn.</p></article>
+        <article class="card"><span class="big-number">02</span><h3>AI tạo bản nháp</h3><p>Người dạy sửa nội dung, thuật ngữ, dữ liệu, đáp án và mức độ phù hợp.</p></article>
+        <article class="card orange"><span class="big-number">03</span><h3>Dữ liệu an toàn</h3><p>Chỉ dùng dữ liệu giả lập hoặc công khai; không tải dữ liệu mật hay chưa được phép.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>RÃµ má»¥c Ä‘Ã­ch Â· kiá»ƒm tra Ä‘áº§u ra Â· báº£o vá»‡ dá»¯ liá»‡u</span></footer>
-      <aside class="speaker-notes"><p>KhÃ´ng trÃ¬nh diá»…n cÃ´ng cá»¥ á»Ÿ pháº§n nÃ y. Táº­p trung vÃ o tiÃªu chuáº©n ra quyáº¿t Ä‘á»‹nh: khi nÃ o cáº§n AI, ai kiá»ƒm tra, dá»¯ liá»‡u nÃ o Ä‘Æ°á»£c phÃ©p dÃ¹ng.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Rõ mục đích · kiểm tra đầu ra · bảo vệ dữ liệu</span></footer>
+      <aside class="speaker-notes"><p>Không trình diễn công cụ ở phần này. Tập trung vào tiêu chuẩn ra quyết định: khi nào cần AI, ai kiểm tra, dữ liệu nào được phép dùng.</p></aside>
     </section>
 
-    <section class="slide" data-title="Chá»n tÆ°Æ¡ng tÃ¡c" data-section="04 Â· TÆ°Æ¡ng tÃ¡c" aria-hidden="true">
-      <header><div class="eyebrow">Má»¥c tiÃªu quyáº¿t Ä‘á»‹nh hÃ¬nh thá»©c</div><h2>Äá»«ng há»i â€œdÃ¹ng cÃ´ng cá»¥ gÃ¬?â€ quÃ¡ sá»›m</h2></header>
+    <section class="slide" data-title="Chọn tương tác" data-section="04 · Tương tác" aria-hidden="true">
+      <header><div class="eyebrow">Mục tiêu quyết định hình thức</div><h2>Đừng hỏi “dùng công cụ gì?” quá sớm</h2></header>
       <div class="content grid-4">
-        <article class="card"><span class="tag">KIáº¾N THá»¨C Má»šI</span><h3 style="margin-top:14px">Há»i + minh há»a</h3><p>Gá»i hiá»ƒu biáº¿t ná»n, lÃ m rÃµ khÃ¡i niá»‡m, kiá»ƒm tra báº±ng cÃ¢u há»i ngáº¯n.</p></article>
-        <article class="card orange"><span class="tag">Ká»¸ NÄ‚NG</span><h3 style="margin-top:14px">Thá»±c hÃ nh</h3><p>Cho lÃ m má»™t pháº§n viá»‡c tháº­t vÃ  pháº£n há»“i ngay vÃ o cÃ¡ch lÃ m.</p></article>
-        <article class="card"><span class="tag">Lá»šP GIÃ€U KINH NGHIá»†M</span><h3 style="margin-top:14px">TÃ¬nh huá»‘ng</h3><p>Äá»ƒ ngÆ°á»i há»c phÃ¢n tÃ­ch vÃ  so sÃ¡nh cÃ¡ch xá»­ lÃ½ trÆ°á»›c khi chá»‘t.</p></article>
-        <article class="card orange"><span class="tag">Máº¤T Máº NG?</span><h3 style="margin-top:14px">TÆ°Æ¡ng tÃ¡c offline</h3><p>Tháº» A/B/C, giÆ¡ tay, giáº¥y ghi chÃº hoáº·c trao Ä‘á»•i theo cáº·p.</p></article>
+        <article class="card"><span class="tag">KIẾN THỨC MỚI</span><h3 style="margin-top:14px">Hỏi + minh họa</h3><p>Gọi hiểu biết nền, làm rõ khái niệm, kiểm tra bằng câu hỏi ngắn.</p></article>
+        <article class="card orange"><span class="tag">KỸ NĂNG</span><h3 style="margin-top:14px">Thực hành</h3><p>Cho làm một phần việc thật và phản hồi ngay vào cách làm.</p></article>
+        <article class="card"><span class="tag">LỚP GIÀU KINH NGHIỆM</span><h3 style="margin-top:14px">Tình huống</h3><p>Để người học phân tích và so sánh cách xử lý trước khi chốt.</p></article>
+        <article class="card orange"><span class="tag">MẤT MẠNG?</span><h3 style="margin-top:14px">Tương tác offline</h3><p>Thẻ A/B/C, giơ tay, giấy ghi chú hoặc trao đổi theo cặp.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>CÃ´ng cá»¥ cÃ³ thá»ƒ thay â€” má»¥c tiÃªu khÃ´ng Ä‘á»•i</span></footer>
-      <aside class="speaker-notes"><p>Cho ngÆ°á»i há»c nÃªu má»™t tÆ°Æ¡ng tÃ¡c online vÃ  phÆ°Æ¡ng Ã¡n offline tÆ°Æ¡ng Ä‘Æ°Æ¡ng. Chá»‘t ráº±ng cÃ´ng nghá»‡ chá»‰ lÃ  kÃªnh tá»• chá»©c hoáº¡t Ä‘á»™ng.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Công cụ có thể thay — mục tiêu không đổi</span></footer>
+      <aside class="speaker-notes"><p>Cho người học nêu một tương tác online và phương án offline tương đương. Chốt rằng công nghệ chỉ là kênh tổ chức hoạt động.</p></aside>
     </section>
 
-    <section class="slide orange-wash" data-title="Bá»‘n nguyÃªn táº¯c Ä‘á»©ng lá»›p" data-section="05 Â· Äá»©ng lá»›p" aria-hidden="true">
-      <header><div class="eyebrow">Lá»›p há»c cÃ³ nhá»‹p vÃ  cÃ³ há»“n</div><h2>4 nguyÃªn táº¯c Ä‘á»©ng lá»›p</h2></header>
+    <section class="slide orange-wash" data-title="Bốn nguyên tắc đứng lớp" data-section="05 · Đứng lớp" aria-hidden="true">
+      <header><div class="eyebrow">Lớp học có nhịp và có hồn</div><h2>4 nguyên tắc đứng lớp</h2></header>
       <div class="content grid-2">
-        <article class="card orange"><h3>01 Â· Thu hÃºt báº±ng váº¥n Ä‘á» tháº­t</h3><p>Má»Ÿ báº±ng tÃ¬nh huá»‘ng, lá»±a chá»n khÃ³, lá»—i thÆ°á»ng gáº·p hoáº·c káº¿t quáº£ báº¥t ngá».</p></article>
-        <article class="card"><h3>02 Â· Há»i Ä‘á»ƒ ngÆ°á»i há»c suy nghÄ©</h3><p>CÃ¢u há»i cá»¥ thá»ƒ, cÃ³ thá»i gian nghÄ©, cÃ³ cÃ¢u há»i tiáº¿p vá» lÃ½ do vÃ  Ã¡p dá»¥ng.</p></article>
-        <article class="card"><h3>03 Â· Cho lÃ m vÃ  pháº£n há»“i ngay</h3><p>Sau trÃ¬nh bÃ y, yÃªu cáº§u quyáº¿t Ä‘á»‹nh, sá»­a, thá»­ hoáº·c giáº£i thÃ­ch.</p></article>
-        <article class="card orange"><h3>04 Â· Táº¡o khÃ´ng khÃ­ an toÃ n</h3><p>TÃ´n trá»ng kinh nghiá»‡m, cho phÃ©p sai trong bÃ i táº­p vÃ  phÃ¢n bá»• cÆ¡ há»™i nÃ³i.</p></article>
+        <article class="card orange"><h3>01 · Thu hút bằng vấn đề thật</h3><p>Mở bằng tình huống, lựa chọn khó, lỗi thường gặp hoặc kết quả bất ngờ.</p></article>
+        <article class="card"><h3>02 · Hỏi để người học suy nghĩ</h3><p>Câu hỏi cụ thể, có thời gian nghĩ, có câu hỏi tiếp về lý do và áp dụng.</p></article>
+        <article class="card"><h3>03 · Cho làm và phản hồi ngay</h3><p>Sau trình bày, yêu cầu quyết định, sửa, thử hoặc giải thích.</p></article>
+        <article class="card orange"><h3>04 · Tạo không khí an toàn</h3><p>Tôn trọng kinh nghiệm, cho phép sai trong bài tập và phân bổ cơ hội nói.</p></article>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>NghÄ© Â· nÃ³i Â· lÃ m Â· nháº­n pháº£n há»“i</span></footer>
-      <aside class="speaker-notes"><p>YÃªu cáº§u má»—i ngÆ°á»i tá»± chá»n nguyÃªn táº¯c mÃ¬nh hay bá» quÃªn nháº¥t. Nháº¥n máº¡nh â€œmá»i ngÆ°á»i cÃ³ hiá»ƒu khÃ´ng?â€ khÃ´ng táº¡o báº±ng chá»©ng há»c táº­p.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Nghĩ · nói · làm · nhận phản hồi</span></footer>
+      <aside class="speaker-notes"><p>Yêu cầu mỗi người tự chọn nguyên tắc mình hay bỏ quên nhất. Nhấn mạnh “mọi người có hiểu không?” không tạo bằng chứng học tập.</p></aside>
     </section>
 
-    <section class="slide" data-title="CÃ¢u há»i gá»£i má»Ÿ" data-section="05 Â· Äá»©ng lá»›p" aria-hidden="true">
-      <header><div class="eyebrow">Äi tá»« tráº£i nghiá»‡m Ä‘áº¿n hÃ nh Ä‘á»™ng</div><h2>Thang 5 cÃ¢u há»i gá»£i má»Ÿ</h2></header>
+    <section class="slide" data-title="Câu hỏi gợi mở" data-section="05 · Đứng lớp" aria-hidden="true">
+      <header><div class="eyebrow">Đi từ trải nghiệm đến hành động</div><h2>Thang 5 câu hỏi gợi mở</h2></header>
       <div class="content question-list">
-        <div class="question-row"><b>1</b><p><strong>Gá»i kinh nghiá»‡m:</strong> Anh/chá»‹ Ä‘Ã£ gáº·p tÃ¬nh huá»‘ng tÆ°Æ¡ng tá»± á»Ÿ Ä‘Ã¢u?</p></div>
-        <div class="question-row"><b>2</b><p><strong>Quan sÃ¡t:</strong> Chi tiáº¿t nÃ o trong vÃ­ dá»¥ nÃ y Ä‘Ã¡ng chÃº Ã½ nháº¥t?</p></div>
-        <div class="question-row"><b>3</b><p><strong>TÃ¬m lÃ½ do:</strong> VÃ¬ sao cÃ¡ch nÃ y hiá»‡u quáº£ hoáº·c chÆ°a hiá»‡u quáº£?</p></div>
-        <div class="question-row"><b>4</b><p><strong>ÄÆ°a ra lá»±a chá»n:</strong> Náº¿u Ä‘iá»u kiá»‡n thay Ä‘á»•i, anh/chá»‹ sáº½ chá»n phÆ°Æ¡ng Ã¡n nÃ o?</p></div>
-        <div class="question-row"><b>5</b><p><strong>Chuyá»ƒn sang Ã¡p dá»¥ng:</strong> Trong cÃ´ng viá»‡c, bÆ°á»›c nÃ o cÃ³ thá»ƒ thá»­ ngay?</p></div>
+        <div class="question-row"><b>1</b><p><strong>Gọi kinh nghiệm:</strong> Anh/chị đã gặp tình huống tương tự ở đâu?</p></div>
+        <div class="question-row"><b>2</b><p><strong>Quan sát:</strong> Chi tiết nào trong ví dụ này đáng chú ý nhất?</p></div>
+        <div class="question-row"><b>3</b><p><strong>Tìm lý do:</strong> Vì sao cách này hiệu quả hoặc chưa hiệu quả?</p></div>
+        <div class="question-row"><b>4</b><p><strong>Đưa ra lựa chọn:</strong> Nếu điều kiện thay đổi, anh/chị sẽ chọn phương án nào?</p></div>
+        <div class="question-row"><b>5</b><p><strong>Chuyển sang áp dụng:</strong> Trong công việc, bước nào có thể thử ngay?</p></div>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>CÃ¢u há»i tá»‘t cÃ³ Ä‘Ã­ch Ä‘áº¿n</span></footer>
-      <aside class="speaker-notes"><p>Äá»c má»™t cÃ¢u há»i chung chung, yÃªu cáº§u lá»›p viáº¿t láº¡i theo má»™t báº­c trong thang. Chá» 5â€“7 giÃ¢y trÆ°á»›c khi má»i tráº£ lá»i.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Câu hỏi tốt có đích đến</span></footer>
+      <aside class="speaker-notes"><p>Đọc một câu hỏi chung chung, yêu cầu lớp viết lại theo một bậc trong thang. Chờ 5–7 giây trước khi mời trả lời.</p></aside>
     </section>
 
-    <section class="slide dark" data-title="Xá»­ lÃ½ lá»›p im láº·ng" data-section="05 Â· TÆ°Æ¡ng tÃ¡c" aria-hidden="true">
-      <header><div class="eyebrow">TÃ¬nh huá»‘ng nhanh</div><h2>Lá»›p im láº·ng sau má»™t cÃ¢u há»i má»Ÿ. Báº¡n lÃ m gÃ¬?</h2></header>
+    <section class="slide dark" data-title="Xử lý lớp im lặng" data-section="05 · Tương tác" aria-hidden="true">
+      <header><div class="eyebrow">Tình huống nhanh</div><h2>Lớp im lặng sau một câu hỏi mở. Bạn làm gì?</h2></header>
       <div class="content">
-        <div class="poll" data-feedback="Thu háº¹p cÃ¢u há»i, cho suy nghÄ© cÃ¡ nhÃ¢n rá»“i trao Ä‘á»•i cáº·p giÃºp giáº£m Ã¡p lá»±c vÃ  tÄƒng cháº¥t lÆ°á»£ng cÃ¢u tráº£ lá»i.">
-          <button type="button"><strong>A</strong><br>Gá»i ngay má»™t ngÆ°á»i báº¥t ká»³ tráº£ lá»i</button>
-          <button type="button" data-best="true"><strong>B</strong><br>Thu háº¹p cÃ¢u há»i â†’ nghÄ© cÃ¡ nhÃ¢n â†’ trao Ä‘á»•i cáº·p</button>
-          <button type="button"><strong>C</strong><br>Tá»± tráº£ lá»i vÃ  chuyá»ƒn sang ná»™i dung tiáº¿p theo</button>
+        <div class="poll" data-feedback="Thu hẹp câu hỏi, cho suy nghĩ cá nhân rồi trao đổi cặp giúp giảm áp lực và tăng chất lượng câu trả lời.">
+          <button type="button"><strong>A</strong><br>Gọi ngay một người bất kỳ trả lời</button>
+          <button type="button" data-best="true"><strong>B</strong><br>Thu hẹp câu hỏi → nghĩ cá nhân → trao đổi cặp</button>
+          <button type="button"><strong>C</strong><br>Tự trả lời và chuyển sang nội dung tiếp theo</button>
         </div>
         <div class="poll-result" aria-live="polite"></div>
         <div class="grid-2" style="margin-top:14px">
-          <div class="card"><h3>Dá»± Ä‘oÃ¡n Â· bÃ¬nh chá»n Â· giáº£i thÃ­ch</h3><p>Ba lá»±a chá»n â†’ bÃ¬nh chá»n cÃ¹ng lÃºc â†’ hai gÃ³c nhÃ¬n â†’ chá»‘t nguyÃªn táº¯c.</p></div>
-          <div class="card orange"><h3>Suy nghÄ© Â· cáº·p Ä‘Ã´i Â· chia sáº»</h3><p>30â€“60 giÃ¢y nghÄ© â†’ 2 phÃºt trao Ä‘á»•i â†’ má»i chia sáº» â†’ ná»‘i vá»›i bÃ i.</p></div>
+          <div class="card"><h3>Dự đoán · bình chọn · giải thích</h3><p>Ba lựa chọn → bình chọn cùng lúc → hai góc nhìn → chốt nguyên tắc.</p></div>
+          <div class="card orange"><h3>Suy nghĩ · cặp đôi · chia sẻ</h3><p>30–60 giây nghĩ → 2 phút trao đổi → mời chia sẻ → nối với bài.</p></div>
         </div>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Äá»•i nhá»‹p sau má»—i 15â€“20 phÃºt</span></footer>
-      <aside class="speaker-notes"><p>Cho cáº£ lá»›p bÃ¬nh chá»n cÃ¹ng lÃºc trÆ°á»›c khi báº¥m Ä‘Ã¡p Ã¡n. Má»i má»™t ngÆ°á»i chá»n A/C nÃªu lÃ½ do, sau Ä‘Ã³ chá»‘t ká»¹ thuáº­t á»Ÿ B.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Đổi nhịp sau mỗi 15–20 phút</span></footer>
+      <aside class="speaker-notes"><p>Cho cả lớp bình chọn cùng lúc trước khi bấm đáp án. Mời một người chọn A/C nêu lý do, sau đó chốt kỹ thuật ở B.</p></aside>
     </section>
 
-    <section class="slide orange-wash" data-title="Cam káº¿t Ã¡p dá»¥ng" data-section="Káº¿t thÃºc" aria-hidden="true">
-      <header><div class="eyebrow">Chá»‘t Ä‘á»ƒ chuyá»ƒn hÃ³a</div><h2>Buá»•i dáº¡y tiáº¿p theo, tÃ´i sáº½ thá»­â€¦</h2></header>
+    <section class="slide orange-wash" data-title="Cam kết áp dụng" data-section="Kết thúc" aria-hidden="true">
+      <header><div class="eyebrow">Chốt để chuyển hóa</div><h2>Buổi dạy tiếp theo, tôi sẽ thử…</h2></header>
       <div class="content">
-        <div class="quote" contenteditable="true" role="textbox" aria-label="Cam káº¿t Ã¡p dá»¥ng">â€œTrong buá»•i dáº¡y sáº¯p tá»›i, tÃ´i sáº½ thá»­â€¦â€</div>
+        <div class="quote" contenteditable="true" role="textbox" aria-label="Cam kết áp dụng">“Trong buổi dạy sắp tới, tôi sẽ thử…”</div>
         <div class="grid-3" style="margin-top:22px">
-          <article class="card"><h3>01 Â· Má»™t cÃ¢u má»Ÿ Ä‘áº§u</h3><p>Gáº¯n vá»›i váº¥n Ä‘á» tháº­t cá»§a ngÆ°á»i há»c.</p></article>
-          <article class="card orange"><h3>02 Â· Má»™t cÃ¢u há»i</h3><p>Dáº«n tá»« quan sÃ¡t Ä‘áº¿n lÃ½ do hoáº·c Ã¡p dá»¥ng.</p></article>
-          <article class="card"><h3>03 Â· Má»™t hoáº¡t Ä‘á»™ng</h3><p>Táº¡o ra cÃ¢u tráº£ lá»i, quyáº¿t Ä‘á»‹nh hoáº·c sáº£n pháº©m.</p></article>
+          <article class="card"><h3>01 · Một câu mở đầu</h3><p>Gắn với vấn đề thật của người học.</p></article>
+          <article class="card orange"><h3>02 · Một câu hỏi</h3><p>Dẫn từ quan sát đến lý do hoặc áp dụng.</p></article>
+          <article class="card"><h3>03 · Một hoạt động</h3><p>Tạo ra câu trả lời, quyết định hoặc sản phẩm.</p></article>
         </div>
       </div>
-      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Há»c xong khi báº¯t Ä‘áº§u lÃ m khÃ¡c Ä‘i</span></footer>
-      <aside class="speaker-notes"><p>Cho 2 phÃºt viáº¿t cam káº¿t, 2 phÃºt trao Ä‘á»•i cáº·p vÃ  1 phÃºt má»i má»™t ngÆ°á»i chia sáº». Káº¿t thÃºc báº±ng cÃ¡ch nháº¯c láº¡i ba Ä‘Ã­ch Ä‘áº¿n Ä‘áº§u buá»•i.</p></aside>
+      <footer class="footerline"><span class="brand"><i class="brand-flame"></i>PVEP</span><span>Học xong khi bắt đầu làm khác đi</span></footer>
+      <aside class="speaker-notes"><p>Cho 2 phút viết cam kết, 2 phút trao đổi cặp và 1 phút mời một người chia sẻ. Kết thúc bằng cách nhắc lại ba đích đến đầu buổi.</p></aside>
     </section>
 
   </main>
 
-  <div class="help"><kbd>â†</kbd> <kbd>â†’</kbd> Ä‘iá»u hÆ°á»›ng Â· <kbd>M</kbd> má»¥c lá»¥c Â· <kbd>N</kbd> ghi chÃº Â· <kbd>F</kbd> toÃ n mÃ n hÃ¬nh</div>
-  <nav class="controls" aria-label="Äiá»u khiá»ƒn trÃ¬nh chiáº¿u">
-    <button class="control-btn optional" id="mapBtn" type="button" aria-label="Má»Ÿ má»¥c lá»¥c" title="Má»¥c lá»¥c (M)">â˜·</button>
-    <button class="control-btn" id="prevBtn" type="button" aria-label="Trang trÆ°á»›c" title="Trang trÆ°á»›c">â†</button>
+  <div class="help"><kbd>←</kbd> <kbd>→</kbd> điều hướng · <kbd>M</kbd> mục lục · <kbd>N</kbd> ghi chú · <kbd>F</kbd> toàn màn hình</div>
+  <nav class="controls" aria-label="Điều khiển trình chiếu">
+    <button class="control-btn optional" id="mapBtn" type="button" aria-label="Mở mục lục" title="Mục lục (M)">☷</button>
+    <button class="control-btn" id="prevBtn" type="button" aria-label="Trang trước" title="Trang trước">←</button>
     <span class="counter" id="counter">01 / 20</span>
-    <button class="control-btn" id="nextBtn" type="button" aria-label="Trang sau" title="Trang sau">â†’</button>
-    <button class="control-btn optional" id="notesBtn" type="button" aria-label="Ghi chÃº giáº£ng viÃªn" title="Ghi chÃº (N)">â–¤</button>
-    <button class="control-btn optional" id="fullBtn" type="button" aria-label="ToÃ n mÃ n hÃ¬nh" title="ToÃ n mÃ n hÃ¬nh (F)">â›¶</button>
+    <button class="control-btn" id="nextBtn" type="button" aria-label="Trang sau" title="Trang sau">→</button>
+    <button class="control-btn optional" id="notesBtn" type="button" aria-label="Ghi chú giảng viên" title="Ghi chú (N)">▤</button>
+    <button class="control-btn optional" id="fullBtn" type="button" aria-label="Toàn màn hình" title="Toàn màn hình (F)">⛶</button>
   </nav>
   <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
-  <aside class="notes-panel" id="notesPanel" aria-live="polite"><strong>Ghi chÃº giáº£ng viÃªn</strong><div id="notesContent"></div></aside>
-  <div class="timer" id="timer"><span>Hoáº¡t Ä‘á»™ng</span><span class="timer-value" id="timerValue">00:00</span><button id="timerClose" type="button" aria-label="ÄÃ³ng Ä‘á»“ng há»“">Ã—</button></div>
+  <aside class="notes-panel" id="notesPanel" aria-live="polite"><strong>Ghi chú giảng viên</strong><div id="notesContent"></div></aside>
+  <div class="timer" id="timer"><span>Hoạt động</span><span class="timer-value" id="timerValue">00:00</span><button id="timerClose" type="button" aria-label="Đóng đồng hồ">×</button></div>
 
   <dialog id="mapDialog">
-    <div class="map-head"><h3>Má»¥c lá»¥c bÃ i giáº£ng</h3><button class="map-close" type="button" aria-label="ÄÃ³ng">Ã—</button></div>
+    <div class="map-head"><h3>Mục lục bài giảng</h3><button class="map-close" type="button" aria-label="Đóng">×</button></div>
     <div class="map-grid" id="mapGrid"></div>
   </dialog>
 
@@ -621,7 +621,7 @@
       const pad = n => String(n).padStart(2, '0');
       function renderNotes() {
         const notes = slides[index].querySelector('.speaker-notes');
-        notesContent.innerHTML = notes ? notes.innerHTML : '<p>KhÃ´ng cÃ³ ghi chÃº cho trang nÃ y.</p>';
+        notesContent.innerHTML = notes ? notes.innerHTML : '<p>Không có ghi chú cho trang này.</p>';
       }
       function goTo(next, updateHash = true) {
         next = Math.max(0, Math.min(slides.length - 1, next));
@@ -633,7 +633,7 @@
         index = next;
         counter.textContent = `${pad(index + 1)} / ${pad(slides.length)}`;
         progress.style.width = `${((index + 1) / slides.length) * 100}%`;
-        document.title = `${slides[index].dataset.title} Â· PVEP`;
+        document.title = `${slides[index].dataset.title} · PVEP`;
         renderNotes();
         if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
       }
@@ -678,14 +678,14 @@
 
       const topicInputs = [...document.querySelectorAll('#topicInputs input')];
       topicInputs.forEach(input => input.addEventListener('input', () => {
-        const v = topicInputs.map((el, i) => el.value.trim() || ['â€¦','â€¦','â€¦','â€¦'][i]);
-        document.getElementById('topicSentence').textContent = `TÃ´i sáº½ giÃºp ${v[0]} thá»±c hiá»‡n ${v[1]} trong ${v[2]} báº±ng cÃ¡ch chia sáº» ${v[3]}.`;
+        const v = topicInputs.map((el, i) => el.value.trim() || ['…','…','…','…'][i]);
+        document.getElementById('topicSentence').textContent = `Tôi sẽ giúp ${v[0]} thực hiện ${v[1]} trong ${v[2]} bằng cách chia sẻ ${v[3]}.`;
       }));
 
       document.querySelectorAll('.check-item').forEach(item => item.addEventListener('click', () => {
         item.classList.toggle('done');
         const count = document.querySelectorAll('.check-item.done').length;
-        document.getElementById('checkStatus').textContent = count === 6 ? '6/6 â€” Sáºµn sÃ ng Ä‘á»ƒ phÃ¡t triá»ƒn bÃ i giáº£ng!' : `${count}/6 quyáº¿t Ä‘á»‹nh Ä‘Ã£ rÃµ`;
+        document.getElementById('checkStatus').textContent = count === 6 ? '6/6 — Sẵn sàng để phát triển bài giảng!' : `${count}/6 quyết định đã rõ`;
       }));
 
       document.querySelectorAll('.poll').forEach(poll => {
@@ -693,7 +693,7 @@
           poll.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
           button.classList.add('selected');
           const result = poll.parentElement.querySelector('.poll-result');
-          result.innerHTML = button.dataset.best ? `<strong>PhÆ°Æ¡ng Ã¡n phÃ¹ há»£p nháº¥t.</strong> ${poll.dataset.feedback}` : `<strong>Má»™t lá»±a chá»n thÆ°á»ng gáº·p.</strong> ${poll.dataset.feedback}`;
+          result.innerHTML = button.dataset.best ? `<strong>Phương án phù hợp nhất.</strong> ${poll.dataset.feedback}` : `<strong>Một lựa chọn thường gặp.</strong> ${poll.dataset.feedback}`;
           result.classList.add('show');
         }));
       });
@@ -707,7 +707,7 @@
         timer.classList.add('active'); draw();
         timerHandle = setInterval(() => {
           remaining -= 1; draw();
-          if (remaining <= 0) { clearInterval(timerHandle); value.textContent = 'Háº¾T GIá»œ'; }
+          if (remaining <= 0) { clearInterval(timerHandle); value.textContent = 'HẾT GIỜ'; }
         }, 1000);
       }
       document.querySelectorAll('[data-timer]').forEach(button => button.addEventListener('click', () => startTimer(Number(button.dataset.timer))));
