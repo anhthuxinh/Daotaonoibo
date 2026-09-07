@@ -1,30 +1,30 @@
-# BÃ i giáº£ng Giáº£ng viÃªn ná»™i bá»™ PVEP
+# Bài giảng Giảng viên nội bộ PVEP
 
-Bá»™ slide HTML gá»“m 20 trang, Ä‘Æ°á»£c xÃ¢y dá»±ng tá»« giÃ¡o Ã¡n **â€œThiáº¿t káº¿ vÃ  thá»±c hiá»‡n buá»•i há»c hiá»‡u quáº£ vá»›i sá»± há»— trá»£ cá»§a AIâ€**.
+Bộ slide HTML gồm 20 trang, được xây dựng từ giáo án **“Thiết kế và thực hiện buổi học hiệu quả với sự hỗ trợ của AI”**.
 
-## CÃ¡ch sá»­ dá»¥ng
+## Cách sử dụng
 
-1. Má»Ÿ `index.html` báº±ng Chrome, Edge hoáº·c Safari.
-2. DÃ¹ng phÃ­m mÅ©i tÃªn trÃ¡i/pháº£i Ä‘á»ƒ chuyá»ƒn trang.
-3. Nháº¥n `M` Ä‘á»ƒ má»Ÿ má»¥c lá»¥c, `N` Ä‘á»ƒ xem ghi chÃº giáº£ng viÃªn, `F` Ä‘á»ƒ trÃ¬nh chiáº¿u toÃ n mÃ n hÃ¬nh.
-4. TrÃªn Ä‘iá»‡n thoáº¡i hoáº·c mÃ¡y tÃ­nh báº£ng, vuá»‘t trÃ¡i/pháº£i Ä‘á»ƒ chuyá»ƒn slide.
-5. Muá»‘n xuáº¥t PDF: má»Ÿ trang, nháº¥n `Ctrl + P`, chá»n **Save as PDF**, khá»• ngang vÃ  báº­t **Background graphics**.
+1. Mở `index.html` bằng Chrome, Edge hoặc Safari.
+2. Dùng phím mũi tên trái/phải để chuyển trang.
+3. Nhấn `M` để mở mục lục, `N` để xem ghi chú giảng viên, `F` để trình chiếu toàn màn hình.
+4. Trên điện thoại hoặc máy tính bảng, vuốt trái/phải để chuyển slide.
+5. Muốn xuất PDF: mở trang, nhấn `Ctrl + P`, chọn **Save as PDF**, khổ ngang và bật **Background graphics**.
 
-## TÆ°Æ¡ng tÃ¡c cÃ³ sáºµn
+## Tương tác có sẵn
 
-- Phiáº¿u chá»n chá»§ Ä‘á» vá»›i cÃ¢u hoÃ n chá»‰nh tá»± Ä‘á»™ng.
-- Báº£ng kiá»ƒm má»©c Ä‘á»™ sáºµn sÃ ng.
-- Khung soáº¡n hoáº¡t Ä‘á»™ng 1â€“3â€“1.
-- Äá»“ng há»“ Ä‘áº¿m ngÆ°á»£c cho hoáº¡t Ä‘á»™ng nhÃ³m.
-- TÃ¬nh huá»‘ng bÃ¬nh chá»n vÃ  pháº£n há»“i tá»©c thÃ¬.
-- Má»¥c lá»¥c, ghi chÃº giáº£ng viÃªn, toÃ n mÃ n hÃ¬nh vÃ  Ä‘iá»u hÆ°á»›ng bÃ n phÃ­m/cháº¡m.
+- Phiếu chọn chủ đề với câu hoàn chỉnh tự động.
+- Bảng kiểm mức độ sẵn sàng.
+- Khung soạn hoạt động 1–3–1.
+- Đồng hồ đếm ngược cho hoạt động nhóm.
+- Tình huống bình chọn và phản hồi tức thì.
+- Mục lục, ghi chú giảng viên, toàn màn hình và điều hướng bàn phím/chạm.
 
-## Nguá»“n thiáº¿t káº¿ vÃ  hÃ¬nh áº£nh
+## Nguồn thiết kế và hình ảnh
 
-- MÃ u chá»§ Ä‘áº¡o Ä‘Æ°á»£c phÃ¡t triá»ƒn tá»« hÆ°á»›ng nháº­n diá»‡n xanhâ€“cam cá»§a PVEP/Petrovietnam, tá»‘i Æ°u láº¡i cho mÃ n hÃ¬nh trÃ¬nh chiáº¿u.
-- áº¢nh giÃ n khai thÃ¡c â€œMarco Polo at Duskâ€ cá»§a GuavaTrain, giáº¥y phÃ©p CC0: https://commons.wikimedia.org/wiki/File:Marco_Polo_at_Dusk.jpg
+- Màu chủ đạo được phát triển từ hướng nhận diện xanh–cam của PVEP/Petrovietnam, tối ưu lại cho màn hình trình chiếu.
+- Ảnh giàn khai thác “Marco Polo at Dusk” của GuavaTrain, giấy phép CC0: https://commons.wikimedia.org/wiki/File:Marco_Polo_at_Dusk.jpg
 
-## ÄÆ°a lÃªn GitHub Pages
+## Đưa lên GitHub Pages
 
-Repository chá»‰ cáº§n cÃ³ `index.html` á»Ÿ thÆ° má»¥c gá»‘c. VÃ o **Settings â†’ Pages**, táº¡i **Build and deployment** chá»n **Deploy from a branch**, chá»n nhÃ¡nh `main` vÃ  thÆ° má»¥c `/ (root)`, sau Ä‘Ã³ nháº¥n **Save**.
+Repository chỉ cần có `index.html` ở thư mục gốc. Vào **Settings → Pages**, tại **Build and deployment** chọn **Deploy from a branch**, chọn nhánh `main` và thư mục `/ (root)`, sau đó nhấn **Save**.
 
