@@ -1,6 +1,6 @@
 # Bài giảng Giảng viên nội bộ PVEP
 
-Bộ slide HTML gồm 19 trang, bám theo bản PowerPoint đã được người dùng điều chỉnh. Số trang được chuẩn hóa thành 01/19–19/19.
+Bộ slide HTML gồm 20 trang, bám theo bản PowerPoint đã được người dùng điều chỉnh. Số trang được chuẩn hóa thành 01/20–20/20.
 
 ## Cách sử dụng
 
@@ -23,6 +23,7 @@ Bộ slide HTML gồm 19 trang, bám theo bản PowerPoint đã được ngườ
 
 ## Tương tác có sẵn
 
+- Bình chọn trực tiếp bằng mã QR ở slide 03: người học không cần đăng nhập, chọn một phương án trên điện thoại và kết quả chuyển động theo thời gian thực trên màn hình trình chiếu.
 - Kéo–thả hoàn thiện phiếu chọn chủ đề.
 - Kéo–thả hoàn thiện bản chuẩn bị buổi học.
 - Kéo–thả phân loại nội dung “Cần học trên lớp / Để tham khảo”.
@@ -30,6 +31,15 @@ Bộ slide HTML gồm 19 trang, bám theo bản PowerPoint đã được ngườ
 - Kéo–thả hoàn thiện cam kết áp dụng cuối khóa.
 - Danh sách slide, toàn màn hình và điều hướng bàn phím/chạm.
 - Hiệu ứng nổi, nghiêng nhẹ và đổ bóng khi rê chuột lên thẻ nội dung.
+
+### Cách dùng slide bình chọn trực tiếp
+
+1. Mở slide 03 khi máy trình chiếu có kết nối Internet và chờ trạng thái **Đang trực tiếp**.
+2. Mời người học quét mã QR rồi chọn một phương án trên điện thoại.
+3. Kết quả sẽ cập nhật ngay trên biểu đồ; người học có thể đổi lựa chọn trong khi phiên còn mở.
+4. Khi sang lớp khác, nhấn **Tạo phiên mới** để làm mới mã QR và toàn bộ kết quả.
+
+Phiên bình chọn chỉ tồn tại khi màn hình trình chiếu còn mở. Kết quả không được lưu trên máy chủ và sẽ được làm mới khi tạo phiên mới hoặc tải lại trang.
 
 ## Nguồn thiết kế và hình ảnh
 
