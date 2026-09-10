@@ -1,0 +1,4 @@
+[functions.poll]
+verify_jwt = false
+
+
