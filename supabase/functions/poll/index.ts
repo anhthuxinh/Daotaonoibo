@@ -49,13 +49,17 @@ export default {
           return json({ error: 'Dữ liệu bình chọn không hợp lệ.' }, 400)
         }
 
-        const { error } = await ctx.supabaseAdmin.rpc('submit_poll_vote', {
+        const { data: accepted, error } = await ctx.supabaseAdmin.rpc('submit_poll_vote', {
           p_session_id: body.session_id,
           p_voter_id: body.voter_id,
           p_choice: body.choice,
         })
         if (error) throw error
-        return json({ ok: true, ...(await readResults(ctx.supabaseAdmin, body.session_id)) })
+        return json({
+          ok: true,
+          accepted: Boolean(accepted),
+          ...(await readResults(ctx.supabaseAdmin, body.session_id)),
+        })
       }
 
       return json({ error: 'Phương thức không được hỗ trợ.' }, 405)
@@ -65,5 +69,4 @@ export default {
     }
   }),
 }
-
 
