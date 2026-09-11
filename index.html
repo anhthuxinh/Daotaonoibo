@@ -92,8 +92,7 @@ const PUBLIC_DECK_URL="https://anhthuxinh.github.io/Daotaonoibo/";
 const SUPABASE_URL="https://ebxslaijwtpiwbulimbn.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_7r7P-na18iNd3RXbvnjzlw_ZAx-3skZ";
 const POLL_HEADERS={apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:"Bearer "+SUPABASE_PUBLISHABLE_KEY};
-const POLL_RESULTS_API=SUPABASE_URL+"/rest/v1/rpc/get_poll_results";
-const POLL_SUBMIT_API=SUPABASE_URL+"/rest/v1/rpc/submit_poll_vote";
+const POLL_TABLE_API=SUPABASE_URL+"/rest/v1/poll_votes";
 const POLL_CHOICES=["topic","learner","content","interaction","delivery"];
 const POLL_SESSION_KEY="pvep-live-poll-session-v1";
 function syncPollForm(){const t=document.querySelector(".live-poll-slide .title"),v=document.querySelector("#voteScreen h1");if(t&&v)v.textContent=t.textContent.trim();document.querySelectorAll(".poll-row[data-choice]").forEach(r=>{const b=document.querySelector(`.vote-option[data-vote="${r.dataset.choice}"]`),l=r.querySelector(".poll-label");if(!b||!l)return;const badge=b.querySelector(".vote-letter");while(b.lastChild&&b.lastChild!==badge)b.removeChild(b.lastChild);b.append(document.createTextNode(l.textContent.trim()))})}
@@ -104,7 +103,7 @@ function setLiveStatus(t,ok=true){const x=document.getElementById("liveStatus");
 function validSession(id){return typeof id==="string"&&id.length>=6&&id.length<=80&&/^[a-zA-Z0-9_-]+$/.test(id)}
 function createPollSession(){const id=makeSessionId();localStorage.setItem(POLL_SESSION_KEY,id);return id}
 function buildPollQr(id){const u=new URL(PUBLIC_DECK_URL);u.searchParams.set("poll","join");u.searchParams.set("session",id);pollJoinUrl=u.toString();const q=document.getElementById("liveQr");if(!q)return;q.innerHTML="";q.dataset.url=pollJoinUrl;if(typeof QRCode==="undefined"){setLiveStatus("Không tải được mã QR",false);return}new QRCode(q,{text:pollJoinUrl,width:256,height:256,colorDark:"#06192c",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.L});document.getElementById("joinCode").textContent="Mã phiên: "+id.slice(-8).toUpperCase()}
-async function refreshPoll(){if(!pollSession)return;try{const res=await fetch(POLL_RESULTS_API,{method:"POST",cache:"no-store",headers:{...POLL_HEADERS,"Content-Type":"application/json"},body:JSON.stringify({p_session_id:pollSession})});const data=await res.json().catch(()=>[]);if(!res.ok)throw new Error(data.message||data.error||"Không đọc được dữ liệu");pollCounts=Object.fromEntries(POLL_CHOICES.map(x=>[x,0]));for(const row of Array.isArray(data)?data:[])if(POLL_CHOICES.includes(row.choice))pollCounts[row.choice]=Number(row.vote_count)||0;renderPoll();setLiveStatus("Đang trực tiếp · Supabase")}catch(e){setLiveStatus("Chưa kết nối Supabase",false)}}
+async function refreshPoll(){if(!pollSession)return;try{const url=POLL_TABLE_API+"?select=choice&session_id=eq."+encodeURIComponent(pollSession);const res=await fetch(url,{cache:"no-store",headers:POLL_HEADERS});const data=await res.json().catch(()=>[]);if(!res.ok)throw new Error(data.message||data.error||"Không đọc được dữ liệu");pollCounts=Object.fromEntries(POLL_CHOICES.map(x=>[x,0]));for(const row of Array.isArray(data)?data:[])if(POLL_CHOICES.includes(row.choice))pollCounts[row.choice]++;renderPoll();setLiveStatus("Đang trực tiếp · Supabase")}catch(e){setLiveStatus("Kiểm tra table & policies",false)}}
 function startLivePoll(force=false){if(new URLSearchParams(location.search).get("poll")==="join")return;if(!force&&pollSession)return;if(force){pollCounts=Object.fromEntries(POLL_CHOICES.map(x=>[x,0]));renderPoll()}const saved=force?"":localStorage.getItem(POLL_SESSION_KEY);pollSession=validSession(saved)?saved:createPollSession();buildPollQr(pollSession);document.getElementById("startPollBtn").textContent="Phiên đang mở";clearInterval(pollTimer);refreshPoll();pollTimer=setInterval(refreshPoll,1500)}
 function setupVoter(session){
   document.body.classList.add("voting-mode");
@@ -120,10 +119,11 @@ function setupVoter(session){
     if(!selected)return label("Hãy chọn một phương án trước khi gửi.","error");
     submit.disabled=true;buttons.forEach(b=>b.disabled=true);retry.style.display="none";label("Đang gửi câu trả lời…","sending");
     try{
-      const res=await fetch(POLL_SUBMIT_API,{method:"POST",headers:{...POLL_HEADERS,"Content-Type":"application/json"},body:JSON.stringify({p_session_id:session,p_voter_id:voter,p_choice:selected})});
+      const res=await fetch(POLL_TABLE_API,{method:"POST",headers:{...POLL_HEADERS,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify({id:session+"__"+voter,session_id:session,choice:selected})});
       const data=await res.json().catch(()=>null);
+      if(res.status===409)return showThanks(true);
       if(!res.ok)throw new Error(data?.message||data?.error||"Không gửi được câu trả lời.");
-      showThanks(data===false);
+      showThanks(false);
     }catch(e){buttons.forEach(b=>b.disabled=false);submit.disabled=false;retry.style.display="inline-flex";label("Chưa gửi được. Kiểm tra mạng rồi thử lại.","error")}
   }
   if(!validSession(session)){buttons.forEach(b=>b.disabled=true);submit.disabled=true;label("Mã phiên không hợp lệ. Vui lòng quét lại QR.","error");return}
@@ -141,7 +141,6 @@ let h=+(location.hash.match(/slide-(\d+)/)||[])[1];show(h?Math.min(h-1,slides.le
 
 
 </body></html>
-
 
 
 
