@@ -1,14 +1,20 @@
-import { withSupabase } from 'npm:@supabase/server@^1'
+import { createClient } from 'npm:@supabase/supabase-js@2'
 
 const choices = ['topic', 'learner', 'content', 'interaction', 'delivery'] as const
 type Choice = typeof choices[number]
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+}
 
 const json = (body: unknown, status = 200) =>
   Response.json(body, {
     status,
     headers: {
       'Cache-Control': 'no-store',
-      'Access-Control-Allow-Origin': '*',
+      ...corsHeaders,
     },
   })
 
@@ -32,15 +38,24 @@ async function readResults(admin: any, sessionId: string) {
   return { counts, total: Object.values(counts).reduce((sum, count) => sum + count, 0) }
 }
 
-export default {
-  fetch: withSupabase({ auth: 'none' }, async (req, ctx) => {
+const supabaseAdmin = createClient(
+  Deno.env.get('SUPABASE_URL')!,
+  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
+  { auth: { persistSession: false, autoRefreshToken: false } },
+)
+
+Deno.serve(async (req) => {
+    if (req.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers: corsHeaders })
+    }
+
     try {
       const url = new URL(req.url)
 
       if (req.method === 'GET') {
         const sessionId = url.searchParams.get('session')
         if (!validId(sessionId, 80)) return json({ error: 'Phiên bình chọn không hợp lệ.' }, 400)
-        return json(await readResults(ctx.supabaseAdmin, sessionId!))
+        return json(await readResults(supabaseAdmin, sessionId!))
       }
 
       if (req.method === 'POST') {
@@ -49,7 +64,7 @@ export default {
           return json({ error: 'Dữ liệu bình chọn không hợp lệ.' }, 400)
         }
 
-        const { data: accepted, error } = await ctx.supabaseAdmin.rpc('submit_poll_vote', {
+        const { data: accepted, error } = await supabaseAdmin.rpc('submit_poll_vote', {
           p_session_id: body.session_id,
           p_voter_id: body.voter_id,
           p_choice: body.choice,
@@ -58,7 +73,7 @@ export default {
         return json({
           ok: true,
           accepted: Boolean(accepted),
-          ...(await readResults(ctx.supabaseAdmin, body.session_id)),
+          ...(await readResults(supabaseAdmin, body.session_id)),
         })
       }
 
@@ -67,6 +82,5 @@ export default {
       console.error(error)
       return json({ error: 'Dịch vụ bình chọn đang bận. Vui lòng thử lại.' }, 500)
     }
-  }),
-}
+})
 
