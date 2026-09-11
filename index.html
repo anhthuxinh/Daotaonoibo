@@ -90,6 +90,8 @@ document.querySelectorAll(".drag-card").forEach(c=>{c.addEventListener("dragstar
 
 const PUBLIC_DECK_URL="https://anhthuxinh.github.io/Daotaonoibo/";
 const POLL_API="https://ebxslaijwtpiwbulimbn.supabase.co/functions/v1/poll";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_7r7P-na18iNd3RXbvnjzlw_ZAx-3skZ";
+const POLL_HEADERS={apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:"Bearer "+SUPABASE_PUBLISHABLE_KEY};
 const POLL_CHOICES=["topic","learner","content","interaction","delivery"];
 const POLL_SESSION_KEY="pvep-live-poll-session-v1";
 function syncPollForm(){const t=document.querySelector(".live-poll-slide .title"),v=document.querySelector("#voteScreen h1");if(t&&v)v.textContent=t.textContent.trim();document.querySelectorAll(".poll-row[data-choice]").forEach(r=>{const b=document.querySelector(`.vote-option[data-vote="${r.dataset.choice}"]`),l=r.querySelector(".poll-label");if(!b||!l)return;const badge=b.querySelector(".vote-letter");while(b.lastChild&&b.lastChild!==badge)b.removeChild(b.lastChild);b.append(document.createTextNode(l.textContent.trim()))})}
@@ -100,7 +102,7 @@ function setLiveStatus(t,ok=true){const x=document.getElementById("liveStatus");
 function validSession(id){return typeof id==="string"&&id.length>=6&&id.length<=80&&/^[a-zA-Z0-9_-]+$/.test(id)}
 function createPollSession(){const id=makeSessionId();localStorage.setItem(POLL_SESSION_KEY,id);return id}
 function buildPollQr(id){const u=new URL(PUBLIC_DECK_URL);u.searchParams.set("poll","join");u.searchParams.set("session",id);pollJoinUrl=u.toString();const q=document.getElementById("liveQr");if(!q)return;q.innerHTML="";q.dataset.url=pollJoinUrl;if(typeof QRCode==="undefined"){setLiveStatus("Không tải được mã QR",false);return}new QRCode(q,{text:pollJoinUrl,width:256,height:256,colorDark:"#06192c",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.L});document.getElementById("joinCode").textContent="Mã phiên: "+id.slice(-8).toUpperCase()}
-async function refreshPoll(){if(!pollSession)return;try{const res=await fetch(POLL_API+"?session="+encodeURIComponent(pollSession),{cache:"no-store"});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||"Không đọc được dữ liệu");pollCounts=Object.fromEntries(POLL_CHOICES.map(x=>[x,Number(data.counts?.[x])||0]));renderPoll();setLiveStatus("Đang trực tiếp · Supabase")}catch(e){setLiveStatus("Chưa kết nối Supabase",false)}}
+async function refreshPoll(){if(!pollSession)return;try{const res=await fetch(POLL_API+"?session="+encodeURIComponent(pollSession),{cache:"no-store",headers:POLL_HEADERS});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||"Không đọc được dữ liệu");pollCounts=Object.fromEntries(POLL_CHOICES.map(x=>[x,Number(data.counts?.[x])||0]));renderPoll();setLiveStatus("Đang trực tiếp · Supabase")}catch(e){setLiveStatus("Chưa kết nối Supabase",false)}}
 function startLivePoll(force=false){if(new URLSearchParams(location.search).get("poll")==="join")return;if(!force&&pollSession)return;if(force){pollCounts=Object.fromEntries(POLL_CHOICES.map(x=>[x,0]));renderPoll()}const saved=force?"":localStorage.getItem(POLL_SESSION_KEY);pollSession=validSession(saved)?saved:createPollSession();buildPollQr(pollSession);document.getElementById("startPollBtn").textContent="Phiên đang mở";clearInterval(pollTimer);refreshPoll();pollTimer=setInterval(refreshPoll,1500)}
 function setupVoter(session){
   document.body.classList.add("voting-mode");
@@ -116,7 +118,7 @@ function setupVoter(session){
     if(!selected)return label("Hãy chọn một phương án trước khi gửi.","error");
     submit.disabled=true;buttons.forEach(b=>b.disabled=true);retry.style.display="none";label("Đang gửi câu trả lời…","sending");
     try{
-      const res=await fetch(POLL_API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({session_id:session,voter_id:voter,choice:selected})});
+      const res=await fetch(POLL_API,{method:"POST",headers:{...POLL_HEADERS,"Content-Type":"application/json"},body:JSON.stringify({session_id:session,voter_id:voter,choice:selected})});
       const data=await res.json().catch(()=>({}));
       if(!res.ok)throw new Error(data.error||"Không gửi được câu trả lời.");
       showThanks(data.accepted===false);
@@ -137,7 +139,6 @@ let h=+(location.hash.match(/slide-(\d+)/)||[])[1];show(h?Math.min(h-1,slides.le
 
 
 </body></html>
-
 
 
 
