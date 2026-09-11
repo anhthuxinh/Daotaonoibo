@@ -23,7 +23,7 @@ security definer
 set search_path = public
 as $$
 declare
-  inserted boolean;
+  affected_rows integer;
 begin
   if char_length(p_session_id) not between 6 and 80 then
     raise exception 'invalid session';
@@ -39,8 +39,8 @@ begin
   values (p_session_id, p_voter_id, p_choice)
   on conflict (session_id, voter_id) do nothing;
 
-  get diagnostics inserted = row_count;
-  return inserted;
+  get diagnostics affected_rows = row_count;
+  return affected_rows = 1;
 end;
 $$;
 
